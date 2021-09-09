@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="max_lines">4</integer>
+    <integer name="pin_length">6</integer>
+    <integer name="fragment_anim">300</integer>
+
+    <integer name="max_step_indicator">3</integer>
+    <integer name="min_step_indicator">0</integer>
+    <integer name="count_step_indicator">4</integer>
+    <integer name="progress_indicator">0</integer>
+
+
+
+</resources>

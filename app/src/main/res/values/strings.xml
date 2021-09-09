@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MyFinance</string>
+    <string name="title_home">Доход</string>
+    <string name="title_statistics">Статистика</string>
+    <string name="title_type_payment">Тип выплат</string>
+    <string name="title_settings">Настройки</string>
+</resources>
