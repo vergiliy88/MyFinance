@@ -1,14 +1,8 @@
 package com.example.myfinance.ui.settings
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.example.myfinance.ui.base.BaseViewModal
 
 
-class SettingsViewModel : ViewModel() {
+class SettingsViewModel  : BaseViewModal<String>() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
-    }
-    val text: LiveData<String> = _text
 }

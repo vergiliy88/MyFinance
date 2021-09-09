@@ -1,14 +1,9 @@
 package com.example.myfinance.ui.type_payment
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+
+import com.example.myfinance.ui.base.BaseViewModal
 
 
-class PaymentTypeViewModel : ViewModel() {
+class PaymentTypeViewModel : BaseViewModal<String>() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
-    }
-    val text: LiveData<String> = _text
 }

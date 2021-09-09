@@ -5,44 +5,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-
 import com.example.myfinance.databinding.FragmentStatisticsBinding
+import com.example.myfinance.ui.base.BaseFragment
 
-class StatisticsFragment : Fragment() {
-
-    private lateinit var statisticsViewModel: StatisticsViewModel
-    private var _binding: FragmentStatisticsBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+class StatisticsFragment(viewModal: StatisticsViewModel): BaseFragment<FragmentStatisticsBinding, String>(viewModal) {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        statisticsViewModel =
-            ViewModelProvider(
-                this,
-                ViewModelProvider.NewInstanceFactory()
-            ).get(StatisticsViewModel::class.java)
+    ): View {
+        super.onCreateView(inflater, container, savedInstanceState)
 
         _binding = FragmentStatisticsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        statisticsViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
-    }
+        val textView: TextView = binding.textStatistic
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        _viewModal.data.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                textView.text = it
+            }
+        })
+        _viewModal.setData("Test String Statistic")
+
+        return root
     }
 }

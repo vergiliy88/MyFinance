@@ -8,40 +8,33 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.myfinance.databinding.FragmentPaymentTypeBinding
 
 import com.example.myfinance.databinding.FragmentSettingsBinding
+import com.example.myfinance.ui.base.BaseFragment
+import com.example.myfinance.ui.type_payment.PaymentTypeViewModel
 
-class SettingsFragment : Fragment() {
-
-    private lateinit var settingsViewModel: SettingsViewModel
-    private var _binding: FragmentSettingsBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+class SettingsFragment(viewModal: SettingsViewModel): BaseFragment<FragmentSettingsBinding, String>(viewModal) {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        settingsViewModel =
-            ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-                SettingsViewModel::class.java
-            )
+    ): View {
+        super.onCreateView(inflater, container, savedInstanceState)
 
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textSettings
-        settingsViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
-    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        _viewModal.data.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                textView.text = it
+            }
+        })
+        _viewModal.setData("Test String Payment Type")
+
+        return root
     }
 }

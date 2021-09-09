@@ -9,9 +9,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.myfinance.R
 import com.example.myfinance.databinding.ActivityMainBinding
 import com.example.myfinance.ui.home.HomeFragment
+import com.example.myfinance.ui.home.HomeViewModel
 import com.example.myfinance.ui.settings.SettingsFragment
+import com.example.myfinance.ui.settings.SettingsViewModel
 import com.example.myfinance.ui.statistics.StatisticsFragment
+import com.example.myfinance.ui.statistics.StatisticsViewModel
 import com.example.myfinance.ui.type_payment.PaymentTypeFragment
+import com.example.myfinance.ui.type_payment.PaymentTypeViewModel
 import com.example.myfinance.utils.UiUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -46,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         if (menuPosition == null) {
 
-            loadFragment(HomeFragment())
+            loadFragment(HomeFragment(HomeViewModel()))
             toolbar?.setTitle(R.string.title_home)
         } else {
             showSelectedScreen(menuPosition!!)
@@ -59,25 +63,25 @@ class MainActivity : AppCompatActivity() {
         when (menuId) {
             R.id.navigation_home -> {
                 toolbar!!.title = applicationContext.getString(R.string.title_home)
-                fragment = HomeFragment()
+                fragment = HomeFragment(HomeViewModel())
                 loadFragment(fragment)
                 result = true
             }
             R.id.navigation_statistics -> {
                 toolbar!!.title = applicationContext.getString(R.string.title_statistics)
-                fragment = StatisticsFragment()
+                fragment = StatisticsFragment(StatisticsViewModel())
                 loadFragment(fragment)
                 result = true
             }
             R.id.navigation_type_payment -> {
                 toolbar!!.title = applicationContext.getString(R.string.title_type_payment)
-                fragment = PaymentTypeFragment()
+                fragment = PaymentTypeFragment(PaymentTypeViewModel())
                 loadFragment(fragment)
                 result = true
             }
             R.id.navigation_settings -> {
                 toolbar!!.title = applicationContext.getString(R.string.title_settings)
-                fragment = SettingsFragment()
+                fragment = SettingsFragment(SettingsViewModel())
                 loadFragment(fragment)
                 result = true
             }

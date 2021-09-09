@@ -1,14 +1,9 @@
 package com.example.myfinance.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+
+import com.example.myfinance.ui.base.BaseViewModal
 
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel  : BaseViewModal<String>() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
 }
