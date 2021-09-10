@@ -4,4 +4,15 @@
     <string name="title_statistics">Статистика</string>
     <string name="title_type_payment">Тип выплат</string>
     <string name="title_settings">Настройки</string>
+
+    <string name="label_salary">Зарплата</string>
+    <string name="label_prepaid">Аванс</string>
+
+    <string name="button_add_payment_type">Добавить тип выплат</string>
+
+    <string name="label_sum">Сумма</string>
+    <string name="label_day">День</string>
+    
+    <string name="button_positive">Сохранить</string>
+    <string name="button_negative">Отмена</string>
 </resources>

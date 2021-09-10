@@ -9,7 +9,16 @@ import androidx.lifecycle.Observer
 import com.example.myfinance.databinding.FragmentStatisticsBinding
 import com.example.myfinance.ui.base.BaseFragment
 
-class StatisticsFragment(viewModal: StatisticsViewModel): BaseFragment<FragmentStatisticsBinding, String>(viewModal) {
+class StatisticsFragment: BaseFragment<FragmentStatisticsBinding, String>() {
+
+    companion object {
+        @JvmStatic
+        fun newInstance(viewModal: StatisticsViewModel): StatisticsFragment {
+            val fragment = StatisticsFragment()
+            fragment._viewModal = viewModal
+            return fragment
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

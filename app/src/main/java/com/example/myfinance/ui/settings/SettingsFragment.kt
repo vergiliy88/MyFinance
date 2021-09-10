@@ -5,16 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.example.myfinance.databinding.FragmentPaymentTypeBinding
-
 import com.example.myfinance.databinding.FragmentSettingsBinding
 import com.example.myfinance.ui.base.BaseFragment
-import com.example.myfinance.ui.type_payment.PaymentTypeViewModel
 
-class SettingsFragment(viewModal: SettingsViewModel): BaseFragment<FragmentSettingsBinding, String>(viewModal) {
+
+class SettingsFragment: BaseFragment<FragmentSettingsBinding, String>() {
+
+    companion object {
+        @JvmStatic
+        fun newInstance(viewModal: SettingsViewModel): SettingsFragment {
+            val fragment = SettingsFragment()
+            fragment._viewModal = viewModal
+            return fragment
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

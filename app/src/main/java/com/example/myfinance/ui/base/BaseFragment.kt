@@ -9,9 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 
 
-open class BaseFragment<VB, D>(private var VM: BaseViewModal<D>): Fragment() {
+open class BaseFragment<VB, D>: Fragment() {
 
-    var _viewModal: BaseViewModal<D> = VM
+    var currentViewModal: BaseViewModal<D> = BaseViewModal()
+    var _viewModal: BaseViewModal<D> = currentViewModal
     var _binding: VB? = null
     val binding get() = _binding!!
 
@@ -22,7 +23,7 @@ open class BaseFragment<VB, D>(private var VM: BaseViewModal<D>): Fragment() {
     ): View? {
         _viewModal =
             ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-                VM::class.java
+                currentViewModal::class.java
             )
         return View(this.context)
     }

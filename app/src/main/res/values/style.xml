@@ -1,3 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="Label">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/label_color</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+    </style>
+
+    <style name="LabelDialog">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/label_color</item>
+        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:layout_marginTop">@dimen/space_normal</item>
+    </style>
+
+    <style name="Button" parent="@style/Widget.AppCompat.Button.Colored">
+        <item name="android:layout_marginTop">@dimen/space_double</item>
+    </style>
+
+    <style name="ViewColor">
+        <item name="android:background">@color/black</item>
+        <item name="android:layout_width">@dimen/view_color_size</item>
+        <item name="android:layout_height">@dimen/view_color_size</item>
+        <item name="android:layout_marginTop">@dimen/space_small</item>
+        <item name="android:layout_marginBottom">@dimen/space_small</item>
+        <item name="android:layout_marginStart">@dimen/space_small</item>
+    </style>
+
+    <style name="LabelList">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/label_color</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:layout_marginStart">@dimen/space_double</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+
+    <style name="ButtonList">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_width">@dimen/view_color_size</item>
+        <item name="android:layout_height">@dimen/view_color_size</item>
+        <item name="android:layout_marginTop">@dimen/space_small</item>
+        <item name="android:layout_marginBottom">@dimen/space_small</item>
+        <item name="android:layout_marginStart">@dimen/space_small</item>
+        <item name="android:layout_marginEnd">@dimen/space_small</item>
+    </style>
+
+    <style name="InputNumber">
+        <item name="android:textColor">@color/label_color</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:layout_marginStart">@dimen/space_small</item>
+        <item name="android:layout_marginEnd">@dimen/space_small</item>
+    </style>
+
+    <style name="Spinner">
+        <item name="android:textColor">@color/label_color</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:layout_marginEnd">@dimen/space_small</item>
+    </style>
+
+    <style name="ButtonDialogPositive" parent="@style/Widget.AppCompat.Button.Colored">
+        <item name="android:layout_marginEnd">@dimen/space_double</item>
+        <item name="android:layout_marginStart">@dimen/space_double</item>
+        <item name="android:layout_marginBottom">@dimen/space_double</item>
+        <item name="android:background">@color/purple_700</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+    </style>
+
+    <style name="ButtonDialogNegative" parent="@style/Widget.AppCompat.Button.Colored">
+        <item name="android:layout_marginTop">@dimen/space_large</item>
+        <item name="android:layout_marginEnd">@dimen/space_double</item>
+        <item name="android:layout_marginStart">@dimen/space_double</item>
+        <item name="android:background">@android:color/holo_red_dark</item>
+        <item name="android:layout_marginBottom">@dimen/space_double</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+    </style>
 </resources>

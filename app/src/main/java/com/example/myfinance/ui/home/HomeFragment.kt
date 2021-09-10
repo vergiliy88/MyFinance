@@ -6,13 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.myfinance.databinding.FragmentHomeBinding
 import java.util.*
-import android.util.Log
 import com.applandeo.materialcalendarview.EventDay
 import com.example.myfinance.R
 import com.example.myfinance.ui.base.BaseFragment
 
 
-class HomeFragment(viewModal: HomeViewModel): BaseFragment<FragmentHomeBinding, String>(viewModal) {
+class HomeFragment: BaseFragment<FragmentHomeBinding, String>() {
+
+    companion object {
+        @JvmStatic
+        fun newInstance(viewModal: HomeViewModel): HomeFragment {
+            val fragment = HomeFragment()
+            fragment._viewModal = viewModal
+            return fragment
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -1,4 +1,4 @@
-package com.example.myfinance.ui.type_payment
+package com.example.myfinance.ui.type_payment.dialogs
 
 import android.R
 import android.content.Intent
