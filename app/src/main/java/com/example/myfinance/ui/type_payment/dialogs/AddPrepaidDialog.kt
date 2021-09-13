@@ -35,18 +35,18 @@ class AddPrepaidDialog : DialogFragment() {
         const val KEY_SUM = "SUM"
         const val KEY_DAY = "DAY"
 
-        fun newInstance(sum: Double, day: Int): DialogFragment {
+        fun newInstance(sum: Double, day: Int): AddPrepaidDialog {
             val args = Bundle()
             args.putDouble(KEY_SUM, sum)
             args.putInt(KEY_DAY, day)
-            val fragment = DialogFragment()
+            val fragment = AddPrepaidDialog()
             fragment.arguments = args
             return fragment
         }
 
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         _binding = DialogAddPrepaidBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -65,20 +65,31 @@ class AddPrepaidDialog : DialogFragment() {
         paymentDay.adapter = adapter
 
         arguments?.let {
+            selectedDay = Constants.days.indexOf(it.getInt(KEY_DAY))
+            selectedSum = it.getDouble(KEY_SUM)
             paymentSum.setText(it.getDouble(KEY_SUM).toString())
             paymentDay.setSelection(Constants.days.indexOf(it.getInt(KEY_DAY)))
         }
 
         paymentDay.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long){
-                selectedDay = Constants.days[position]
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long){
+                view?.let{
+                    selectedDay = Constants.days[position]
+                }
+
             }
             override fun onNothingSelected(parent: AdapterView<*>){}
         }
 
         paymentSum.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                selectedSum = s.toString().toDouble()
+                s?.let { string ->
+                    selectedSum = if (string.isNotEmpty()){
+                        s.toString().toDouble()
+                    } else {
+                        0.0
+                    }
+                }
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -94,6 +105,7 @@ class AddPrepaidDialog : DialogFragment() {
                 targetRequestCode,
                 PREPAID_RESULT_CODE,
                 intent)
+            dismiss()
         }
 
         buttonNegative.setOnClickListener {

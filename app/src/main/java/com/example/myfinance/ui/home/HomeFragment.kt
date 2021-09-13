@@ -11,14 +11,12 @@ import com.example.myfinance.R
 import com.example.myfinance.ui.base.BaseFragment
 
 
-class HomeFragment: BaseFragment<FragmentHomeBinding, String>() {
+class HomeFragment: BaseFragment<FragmentHomeBinding>() {
 
     companion object {
         @JvmStatic
-        fun newInstance(viewModal: HomeViewModel): HomeFragment {
-            val fragment = HomeFragment()
-            fragment._viewModal = viewModal
-            return fragment
+        fun newInstance(): HomeFragment {
+            return HomeFragment()
         }
     }
 

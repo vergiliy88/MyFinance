@@ -10,14 +10,12 @@ import com.example.myfinance.databinding.FragmentSettingsBinding
 import com.example.myfinance.ui.base.BaseFragment
 
 
-class SettingsFragment: BaseFragment<FragmentSettingsBinding, String>() {
+class SettingsFragment: BaseFragment<FragmentSettingsBinding>() {
 
     companion object {
         @JvmStatic
-        fun newInstance(viewModal: SettingsViewModel): SettingsFragment {
-            val fragment = SettingsFragment()
-            fragment._viewModal = viewModal
-            return fragment
+        fun newInstance(): SettingsFragment {
+            return SettingsFragment()
         }
     }
 
@@ -32,13 +30,6 @@ class SettingsFragment: BaseFragment<FragmentSettingsBinding, String>() {
         val root: View = binding.root
 
         val textView: TextView = binding.textSettings
-
-        _viewModal.data.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                textView.text = it
-            }
-        })
-        _viewModal.setData("Test String Payment Type")
 
         return root
     }

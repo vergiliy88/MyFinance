@@ -15,4 +15,11 @@
     
     <string name="button_positive">Сохранить</string>
     <string name="button_negative">Отмена</string>
+
+    <string name="dialog_title_payment_type">Создание типа вылат</string>
+    <string name="label_color">Цвет</string>
+    <string name="label_name">Название</string>
+
+    <string name="number">число</string>
+    <string name="currency">р.</string>
 </resources>

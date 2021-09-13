@@ -9,14 +9,12 @@ import androidx.lifecycle.Observer
 import com.example.myfinance.databinding.FragmentStatisticsBinding
 import com.example.myfinance.ui.base.BaseFragment
 
-class StatisticsFragment: BaseFragment<FragmentStatisticsBinding, String>() {
+class StatisticsFragment: BaseFragment<FragmentStatisticsBinding>() {
 
     companion object {
         @JvmStatic
-        fun newInstance(viewModal: StatisticsViewModel): StatisticsFragment {
-            val fragment = StatisticsFragment()
-            fragment._viewModal = viewModal
-            return fragment
+        fun newInstance(): StatisticsFragment {
+            return StatisticsFragment()
         }
     }
 
@@ -32,12 +30,6 @@ class StatisticsFragment: BaseFragment<FragmentStatisticsBinding, String>() {
 
         val textView: TextView = binding.textStatistic
 
-        _viewModal.data.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                textView.text = it
-            }
-        })
-        _viewModal.setData("Test String Statistic")
 
         return root
     }

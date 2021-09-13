@@ -36,18 +36,18 @@ class AddSalaryDialog: DialogFragment() {
         const val KEY_SUM = "SUM"
         const val KEY_DAY = "DAY"
 
-        fun newInstance(sum: Double, day: Int): DialogFragment {
+        fun newInstance(sum: Double, day: Int): AddSalaryDialog {
             val args = Bundle()
             args.putDouble(KEY_SUM, sum)
             args.putInt(KEY_DAY, day)
-            val fragment = DialogFragment()
+            val fragment = AddSalaryDialog()
             fragment.arguments = args
             return fragment
         }
 
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         _binding = DialogAddSalaryBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -62,7 +62,7 @@ class AddSalaryDialog: DialogFragment() {
             R.layout.simple_spinner_item,
             Constants.days
         )
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+        adapter.setDropDownViewResource(R.layout.simple_dropdown_item_1line)
         paymentDay.adapter = adapter;
         paymentDay.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent:AdapterView<*>, view: View, position: Int, id: Long){
@@ -73,13 +73,21 @@ class AddSalaryDialog: DialogFragment() {
         }
 
         arguments?.let {
+            selectedDay = Constants.days.indexOf(it.getInt(AddPrepaidDialog.KEY_DAY))
+            selectedSum = it.getDouble(AddPrepaidDialog.KEY_SUM)
             paymentSum.setText(it.getDouble(AddPrepaidDialog.KEY_SUM).toString())
             paymentDay.setSelection(Constants.days.indexOf(it.getInt(AddPrepaidDialog.KEY_DAY)))
         }
 
         paymentSum.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                selectedSum = s.toString().toDouble()
+                s?.let { string ->
+                    selectedSum = if (string.isNotEmpty()){
+                        s.toString().toDouble()
+                    } else {
+                        0.0
+                    }
+                }
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -95,6 +103,7 @@ class AddSalaryDialog: DialogFragment() {
                 targetRequestCode,
                 SALARY_RESULT_CODE,
                 intent)
+            dismiss()
         }
 
         buttonNegative.setOnClickListener {

@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         if (menuPosition == null) {
 
-            loadFragment(HomeFragment.newInstance(HomeViewModel()))
+            loadFragment(HomeFragment.newInstance())
             toolbar?.setTitle(R.string.title_home)
         } else {
             showSelectedScreen(menuPosition!!)
@@ -63,25 +63,25 @@ class MainActivity : AppCompatActivity() {
         when (menuId) {
             R.id.navigation_home -> {
                 toolbar!!.title = applicationContext.getString(R.string.title_home)
-                fragment = HomeFragment.newInstance(HomeViewModel())
+                fragment = HomeFragment.newInstance()
                 loadFragment(fragment)
                 result = true
             }
             R.id.navigation_statistics -> {
                 toolbar!!.title = applicationContext.getString(R.string.title_statistics)
-                fragment = StatisticsFragment.newInstance(StatisticsViewModel())
+                fragment = StatisticsFragment.newInstance()
                 loadFragment(fragment)
                 result = true
             }
             R.id.navigation_type_payment -> {
                 toolbar!!.title = applicationContext.getString(R.string.title_type_payment)
-                fragment = PaymentTypeFragment.newInstance(PaymentTypeViewModel())
+                fragment = PaymentTypeFragment.newInstance()
                 loadFragment(fragment)
                 result = true
             }
             R.id.navigation_settings -> {
                 toolbar!!.title = applicationContext.getString(R.string.title_settings)
-                fragment = SettingsFragment.newInstance(SettingsViewModel())
+                fragment = SettingsFragment.newInstance()
                 loadFragment(fragment)
                 result = true
             }

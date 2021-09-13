@@ -6,13 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 
 
-open class BaseFragment<VB, D>: Fragment() {
+open class BaseFragment<VB>: Fragment() {
 
-    var currentViewModal: BaseViewModal<D> = BaseViewModal()
-    var _viewModal: BaseViewModal<D> = currentViewModal
     var _binding: VB? = null
     val binding get() = _binding!!
 
@@ -21,10 +18,7 @@ open class BaseFragment<VB, D>: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _viewModal =
-            ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-                currentViewModal::class.java
-            )
+
         return View(this.context)
     }
 
