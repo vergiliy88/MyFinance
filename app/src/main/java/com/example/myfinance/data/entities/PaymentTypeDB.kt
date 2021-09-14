@@ -4,11 +4,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-class RegularPaymentsDB() {
+class PaymentTypeDB {
     @PrimaryKey(autoGenerate = true)
     var id: Long? = null
-    var salary: Double? = null
-    var salaryDay: Int? = null
-    var prepaid: Double? = null
-    var prepaidDay: Int? = null
+    var name: String? = null
+    var sum: Double? = null
+    var color: String? = null
 }

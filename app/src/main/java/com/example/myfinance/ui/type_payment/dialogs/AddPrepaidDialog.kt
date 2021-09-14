@@ -14,14 +14,16 @@ import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.DialogFragment
 import com.example.myfinance.databinding.DialogAddPrepaidBinding
 import com.example.myfinance.utils.Constants
+import com.example.myfinance.utils.Constants.Companion.DEFAULT_DAY
+import com.example.myfinance.utils.Constants.Companion.DEFAULT_SUM
 
 class AddPrepaidDialog : DialogFragment() {
 
     var _binding: DialogAddPrepaidBinding? = null
     val binding get() = _binding!!
 
-    var selectedDay = 1
-    var selectedSum = 0.0
+    var selectedDay = DEFAULT_DAY
+    var selectedSum = DEFAULT_SUM
 
     companion object {
 
@@ -59,22 +61,22 @@ class AddPrepaidDialog : DialogFragment() {
         val adapter = ArrayAdapter(
             requireContext(),
             R.layout.simple_spinner_item,
-            Constants.days
+            Constants.DAYS
         )
         adapter.setDropDownViewResource(R.layout.simple_dropdown_item_1line)
         paymentDay.adapter = adapter
 
         arguments?.let {
-            selectedDay = Constants.days.indexOf(it.getInt(KEY_DAY))
+            selectedDay = Constants.DAYS.indexOf(it.getInt(KEY_DAY))
             selectedSum = it.getDouble(KEY_SUM)
             paymentSum.setText(it.getDouble(KEY_SUM).toString())
-            paymentDay.setSelection(Constants.days.indexOf(it.getInt(KEY_DAY)))
+            paymentDay.setSelection(Constants.DAYS.indexOf(it.getInt(KEY_DAY)))
         }
 
         paymentDay.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long){
                 view?.let{
-                    selectedDay = Constants.days[position]
+                    selectedDay = Constants.DAYS[position]
                 }
 
             }
@@ -87,7 +89,7 @@ class AddPrepaidDialog : DialogFragment() {
                     selectedSum = if (string.isNotEmpty()){
                         s.toString().toDouble()
                     } else {
-                        0.0
+                        DEFAULT_SUM
                     }
                 }
             }

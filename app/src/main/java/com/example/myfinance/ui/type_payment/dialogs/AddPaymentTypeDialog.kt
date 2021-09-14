@@ -13,36 +13,28 @@ import android.widget.*
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.DialogFragment
 import com.example.myfinance.databinding.DialogAddPaymentTypeBinding
+import com.example.myfinance.domain.models.PaymentType
 import com.example.myfinance.utils.Constants
+import com.example.myfinance.utils.Constants.Companion.DEFAULT_SUM
 
 class AddPaymentTypeDialog : DialogFragment() {
 
     var _binding: DialogAddPaymentTypeBinding? = null
     val binding get() = _binding!!
 
-    var selectedColor = ""
-    var selectedSum = 0.0
-    var selectedName = ""
+    var paymentType: PaymentType = PaymentType()
 
     companion object {
 
         const val TAG = "AddPaymentTypeDialog"
         const val ADD_TYPE_RESULT = 3
 
-        const val TAG_PAYMENT_SUM = "tag_payment_sum"
-        const val TAG_PAYMENT_COLOR = "tag_payment_color"
-        const val TAG_PAYMENT_NAME = "tag_payment_name"
+        const val TAG_PAYMENT_TYPE = "tag_payment_type"
 
 
-        const val KEY_SUM = "SUM"
-        const val KEY_COLOR = "COLOR"
-        const val KEY_NAME = "NAME"
-
-        fun newInstance(sum: Double, color: String, name: String): AddPaymentTypeDialog {
+        fun newInstance(paymentType: PaymentType): AddPaymentTypeDialog {
             val args = Bundle()
-            args.putDouble(KEY_SUM, sum)
-            args.putString(KEY_COLOR, color)
-            args.putString(KEY_NAME, name)
+            args.putParcelable(TAG_PAYMENT_TYPE, paymentType)
             val fragment = AddPaymentTypeDialog()
             fragment.arguments = args
             return fragment
@@ -68,18 +60,20 @@ class AddPaymentTypeDialog : DialogFragment() {
         val adapter = ColorArrayAdapter(
             requireContext(),
             R.layout.simple_spinner_item,
-            Constants.colors
+            Constants.COLORS
         )
         adapter.setDropDownViewResource(R.layout.simple_dropdown_item_1line)
         paymentColor.adapter = adapter
 
         arguments?.let {
-            selectedColor = it.getString(KEY_COLOR) ?: ""
-            selectedSum = it.getDouble(KEY_SUM) ?: 0.0
-            selectedName = it.getString(KEY_NAME) ?: ""
-            paymentSum.setText(it.getDouble(KEY_SUM, 0.0).toString())
-            paymentColor.setSelection(Constants.colors.indexOf(it.getString(KEY_COLOR, Constants.colors[0])))
-            paymentName.setText(it.getString(KEY_SUM, ""))
+            val paymentTypeParcel = it.getParcelable<PaymentType>(TAG_PAYMENT_TYPE) ?: PaymentType()
+            paymentType.color = paymentTypeParcel.color ?: ""
+            paymentType.sum = paymentTypeParcel.sum ?: DEFAULT_SUM
+            paymentType.name = paymentTypeParcel.name ?: ""
+            paymentType.id = paymentTypeParcel.id
+            paymentSum.setText(paymentType.sum.toString())
+            paymentColor.setSelection(Constants.COLORS.indexOf(paymentType.color))
+            paymentName.setText(paymentType.name)
         }
 
         paymentColor.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -90,7 +84,7 @@ class AddPaymentTypeDialog : DialogFragment() {
                 id: Long
             ) {
                 view?.let {
-                    selectedColor = Constants.colors[position]
+                    paymentType.color = Constants.COLORS[position]
                 }
             }
 
@@ -100,10 +94,10 @@ class AddPaymentTypeDialog : DialogFragment() {
         paymentSum.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 s?.let { string ->
-                    selectedSum = if (string.isNotEmpty()) {
+                    paymentType.sum = if (string.isNotEmpty()) {
                         s.toString().toDouble()
                     } else {
-                        0.0
+                        DEFAULT_SUM
                     }
                 }
             }
@@ -114,7 +108,7 @@ class AddPaymentTypeDialog : DialogFragment() {
         paymentName.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 s?.let { string ->
-                    selectedName = string.toString()
+                    paymentType.name = string.toString()
                 }
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -123,9 +117,7 @@ class AddPaymentTypeDialog : DialogFragment() {
 
         buttonPositive.setOnClickListener {
             val intent = Intent()
-            intent.putExtra(TAG_PAYMENT_NAME, selectedSum)
-            intent.putExtra(TAG_PAYMENT_COLOR, selectedColor)
-            intent.putExtra(TAG_PAYMENT_SUM, selectedSum)
+            intent.putExtra(TAG_PAYMENT_TYPE, paymentType)
             targetFragment?.onActivityResult(
                 targetRequestCode,
                 ADD_TYPE_RESULT,

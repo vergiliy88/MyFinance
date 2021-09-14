@@ -1,9 +1,9 @@
-package com.example.myfinance.domain.mappers
+package com.example.myfinance.data.mappers
 
 import com.example.myfinance.data.entities.RegularPaymentsDB
 import com.example.myfinance.domain.models.RegularPayments
 
-class MapFromDBRegularPayments {
+class MapRegularPayments {
     companion object{
         fun mapFromDb(fromDB: RegularPaymentsDB): RegularPayments  {
             val domainModel = RegularPayments()

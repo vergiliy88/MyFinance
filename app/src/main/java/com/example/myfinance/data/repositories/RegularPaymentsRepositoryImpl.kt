@@ -4,21 +4,14 @@ import com.example.myfinance.domain.models.RegularPayments
 import com.example.myfinance.domain.repositories.RegularPaymentsRepository
 import com.example.myfinance.App
 import com.example.myfinance.data.DataBase
-import com.example.myfinance.domain.mappers.MapFromDBRegularPayments
+import com.example.myfinance.data.mappers.MapRegularPayments
 
 
 class RegularPaymentsRepositoryImpl: RegularPaymentsRepository {
     var db: DataBase = App.getInstance().database
-    override suspend fun saveRegularPayments(regularPayments: RegularPayments): RegularPayments {
-        if (regularPayments.id != null) {
-            db.regularPaymentsDao()
-                .updateRegularPayments(MapFromDBRegularPayments.mapTomDb(regularPayments))
-        } else {
-            regularPayments.id = db.regularPaymentsDao()
-                .insertRegularPayments(MapFromDBRegularPayments.mapTomDb(regularPayments))
-        }
-
-        return regularPayments
+    override suspend fun saveRegularPayments(regularPayments: RegularPayments): Long {
+        return db.regularPaymentsDao()
+            .insertRegularPayments(MapRegularPayments.mapTomDb(regularPayments))
     }
 
     override suspend fun getRegularPayments(): RegularPayments {
@@ -26,6 +19,11 @@ class RegularPaymentsRepositoryImpl: RegularPaymentsRepository {
         if (list.isEmpty()) {
             return RegularPayments()
         }
-        return MapFromDBRegularPayments.mapFromDb(db.regularPaymentsDao().getAllRegularPayments().first())
+        return MapRegularPayments.mapFromDb(list.first())
+    }
+
+    override suspend fun updateRegularPayments(regularPayments: RegularPayments) {
+        db.regularPaymentsDao()
+            .updateRegularPayments(MapRegularPayments.mapTomDb(regularPayments))
     }
 }
