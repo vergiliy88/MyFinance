@@ -22,4 +22,9 @@
 
     <string name="number">число</string>
     <string name="currency">р.</string>
+
+    <string name="title_del_payment_type">Удаление типа выплат</string>
+    <string name="label_del_payment_type_from_cal">удаленить данный тип выплат из календаря</string>
+
+    <string name="button_del">Удалить</string>
 </resources>

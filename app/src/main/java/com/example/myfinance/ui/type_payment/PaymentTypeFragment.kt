@@ -3,7 +3,6 @@ package com.example.myfinance.ui.type_payment
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +24,10 @@ import com.example.myfinance.ui.type_payment.dialogs.AddPrepaidDialog
 import com.example.myfinance.ui.type_payment.dialogs.AddPrepaidDialog.Companion.PREPAID_RESULT_CODE
 import com.example.myfinance.ui.type_payment.dialogs.AddSalaryDialog
 import com.example.myfinance.ui.type_payment.dialogs.AddSalaryDialog.Companion.SALARY_RESULT_CODE
+import com.example.myfinance.ui.type_payment.dialogs.ConfirmDeletePaymentTypeDialog
+import com.example.myfinance.ui.type_payment.dialogs.ConfirmDeletePaymentTypeDialog.Companion.CONFIRM_DEL_PAYMENT_TYPE
+import com.example.myfinance.ui.type_payment.dialogs.ConfirmDeletePaymentTypeDialog.Companion.TAG_IS_DEL_FROM_CAL
+import com.example.myfinance.ui.type_payment.dialogs.ConfirmDeletePaymentTypeDialog.Companion.TAG_PAYMENT_TYPE_POSITION
 import com.example.myfinance.utils.Constants.Companion.DEFAULT_DAY
 import com.example.myfinance.utils.Constants.Companion.DEFAULT_SUM
 
@@ -74,7 +77,14 @@ class PaymentTypeFragment: BaseFragment<FragmentPaymentTypeBinding>() {
                 }
             },
             R.id.button_remove to BaseAdapter.OnViewClickListener { _, value ->
-
+                val list = _viewModal.paymentTypes.value
+                val position = value as Int
+                _viewModal.setSelectedPaymentsType(position)
+                list?.get(position)?.let {
+                    val dialog = ConfirmDeletePaymentTypeDialog.newInstance(position)
+                    dialog.setTargetFragment(this, CONFIRM_DEL_PAYMENT_TYPE)
+                    dialog.show(parentFragmentManager, ConfirmDeletePaymentTypeDialog.TAG)
+                }
             }
         )
 
@@ -165,10 +175,15 @@ class PaymentTypeFragment: BaseFragment<FragmentPaymentTypeBinding>() {
 
             ADD_TYPE_RESULT -> {
                 val paymentType = data.getParcelableExtra<PaymentType>(TAG_PAYMENT_TYPE)
-                Log.d("TEST", paymentType?.name.toString())
                 paymentType?.let {
                     _viewModal.setPaymentsType(it)
                 }
+            }
+
+            CONFIRM_DEL_PAYMENT_TYPE -> {
+                val isDelFromCal = data.getBooleanExtra(TAG_IS_DEL_FROM_CAL, false)
+                val paymentTypePosition = data.getIntExtra(TAG_PAYMENT_TYPE_POSITION, 0)
+                _viewModal.delPaymentType(paymentTypePosition, isDelFromCal)
             }
         }
     }

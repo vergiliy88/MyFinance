@@ -1,4 +1,4 @@
-package com.example.myfinance.domain.usecase
+package com.example.myfinance.domain.usecase.regular_payments
 
 import com.example.myfinance.domain.models.RegularPayments
 import com.example.myfinance.domain.repositories.RegularPaymentsRepository

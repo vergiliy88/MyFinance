@@ -11,7 +11,7 @@
         style="@style/LabelDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/label_prepaid"
+        android:text="@string/title_type_payment"
         style:layout_constraintEnd_toEndOf="parent"
         style:layout_constraintStart_toStartOf="parent"
         style:layout_constraintTop_toTopOf="parent" />

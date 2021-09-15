@@ -8,10 +8,11 @@ import com.example.myfinance.data.repositories.PaymentTypesRepositoryImpl
 import com.example.myfinance.data.repositories.RegularPaymentsRepositoryImpl
 import com.example.myfinance.domain.models.PaymentType
 import com.example.myfinance.domain.models.RegularPayments
-import com.example.myfinance.domain.usecase.GetPaymentTypes
-import com.example.myfinance.domain.usecase.GetRegularPayments
-import com.example.myfinance.domain.usecase.SavePaymentTypes
-import com.example.myfinance.domain.usecase.SaveRegularPayments
+import com.example.myfinance.domain.usecase.payment_types.DelPaymentTypes
+import com.example.myfinance.domain.usecase.payment_types.GetPaymentTypes
+import com.example.myfinance.domain.usecase.payment_types.SavePaymentTypes
+import com.example.myfinance.domain.usecase.regular_payments.GetRegularPayments
+import com.example.myfinance.domain.usecase.regular_payments.SaveRegularPayments
 import com.example.myfinance.ui.base.BaseViewModal
 import kotlinx.coroutines.launch
 
@@ -23,6 +24,7 @@ class PaymentTypeViewModel: BaseViewModal() {
 
     private val savePaymentTypesUseCase = SavePaymentTypes(PaymentTypesRepositoryImpl())
     private val getPaymentTypesUseCase = GetPaymentTypes(PaymentTypesRepositoryImpl())
+    private val delPaymentTypesUseCase = DelPaymentTypes(PaymentTypesRepositoryImpl())
 
     private val _regularPayments = MutableLiveData<RegularPayments>().apply {
         value = null
@@ -67,15 +69,36 @@ class PaymentTypeViewModel: BaseViewModal() {
     }
 
     fun setPaymentsType(data: PaymentType) {
-        val oldList: MutableList<PaymentType> = mutableListOf()
-        _paymentTypes.value?.let { oldList.addAll(it) }
+        val oldList = createMutableList()
         viewModelScope.launch {
             if (selectedPaymentType.value != null) {
                 oldList[selectedPaymentType.value!!] = savePaymentTypesUseCase.execute(data)
             } else {
                 oldList.add(savePaymentTypesUseCase.execute(data))
             }
-            _paymentTypes.value = oldList.toList()
+            returnNewVal(oldList)
         }
+    }
+
+    fun delPaymentType(paymentTypePosition: Int, isDelFromCal: Boolean) {
+        viewModelScope.launch {
+            val oldList = createMutableList()
+            val result = delPaymentTypesUseCase.delPaymentType(oldList[paymentTypePosition], isDelFromCal)
+            if (result) {
+                oldList.removeAt(paymentTypePosition)
+                returnNewVal(oldList)
+            }
+        }
+    }
+
+    private fun createMutableList(): MutableList<PaymentType> {
+        val oldList: MutableList<PaymentType> = mutableListOf()
+        _paymentTypes.value?.let { oldList.addAll(it) }
+        return oldList
+    }
+
+    private fun returnNewVal(oldList: MutableList<PaymentType>) {
+        _paymentTypes.value = oldList.toList()
+        _selectedPaymentType.value = null
     }
 }

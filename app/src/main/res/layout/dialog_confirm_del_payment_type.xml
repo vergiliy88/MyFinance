@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:style="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="visible">
+
+    <TextView
+        android:id="@+id/title_del_payment_type"
+        style="@style/LabelDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_del_payment_type"
+        style:layout_constraintEnd_toEndOf="parent"
+        style:layout_constraintStart_toStartOf="parent"
+        style:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/label_del_payment_type"
+        style="@style/LabelDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_del_payment_type"
+        style:layout_constraintEnd_toEndOf="parent"
+        style:layout_constraintStart_toStartOf="parent"
+        style:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/check_box_del_from_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_tripple"
+        android:layout_marginBottom="@dimen/space_tripple"
+        android:text="@string/label_del_payment_type_from_cal"
+        style:layout_constraintEnd_toEndOf="parent"
+        style:layout_constraintStart_toStartOf="parent"
+        style:layout_constraintTop_toBottomOf="@+id/title_del_payment_type" />
+
+    <Button
+        android:id="@+id/button_positive"
+        style="@style/ButtonDialogNegative"
+        android:layout_width="wrap_content"
+        android:text="@string/button_del"
+        style:layout_constraintBottom_toBottomOf="parent"
+        style:layout_constraintStart_toStartOf="parent"
+        style:layout_constraintTop_toBottomOf="@+id/check_box_del_from_calendar" />
+
+    <Button
+        android:id="@+id/button_negative"
+        style="@style/ButtonDialogPositive"
+        android:layout_width="wrap_content"
+        android:text="@string/button_negative"
+        style:layout_constraintBottom_toBottomOf="parent"
+        style:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

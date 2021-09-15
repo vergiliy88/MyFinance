@@ -2,7 +2,6 @@ package com.example.myfinance.ui.type_payment.dialogs
 
 import android.R
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,18 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.fragment.app.DialogFragment
 import com.example.myfinance.databinding.DialogAddSalaryBinding
+import com.example.myfinance.ui.base.BaseDialog
 import com.example.myfinance.utils.Constants
 import com.example.myfinance.utils.Constants.Companion.DEFAULT_DAY
 import com.example.myfinance.utils.Constants.Companion.DEFAULT_SUM
 
 
-class AddSalaryDialog: DialogFragment() {
-
-    var _binding: DialogAddSalaryBinding? = null
-    val binding get() = _binding!!
+class AddSalaryDialog: BaseDialog<DialogAddSalaryBinding>() {
 
     var selectedDay = DEFAULT_DAY
     var selectedSum = DEFAULT_SUM
@@ -113,26 +108,5 @@ class AddSalaryDialog: DialogFragment() {
         }
 
         return root
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if(resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            val params = dialog!!.window!!.attributes
-            params.width = LinearLayoutCompat.LayoutParams.MATCH_PARENT
-            dialog!!.window!!.attributes = params as android.view.WindowManager.LayoutParams
-        } else {
-            val displayMetrics = requireContext().resources.displayMetrics
-            val dpWidth = displayMetrics.widthPixels
-            val params = dialog!!.window!!.attributes
-            params.height = LinearLayoutCompat.LayoutParams.WRAP_CONTENT
-            dialog!!.window!!.setLayout(dpWidth ,
-                params.height)
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

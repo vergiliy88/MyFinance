@@ -1,4 +1,4 @@
-package com.example.myfinance.domain.usecase
+package com.example.myfinance.domain.usecase.payment_types
 
 
 import com.example.myfinance.domain.models.PaymentType
