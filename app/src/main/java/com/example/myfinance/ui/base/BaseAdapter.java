@@ -99,4 +99,8 @@ public abstract class BaseAdapter<T, VH extends BaseViewHolder<T>>
         void onClick (View view,
                       Object value);
     }
+
+    public List<T> getData() {
+        return items;
+    }
 }

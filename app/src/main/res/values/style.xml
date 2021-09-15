@@ -79,4 +79,9 @@
         <item name="android:paddingStart">@dimen/space_small</item>
         <item name="android:paddingEnd">@dimen/space_small</item>
     </style>
+
+    <style name="Switch">
+        <item name="android:layout_marginTop">@dimen/space_double</item>
+        <item name="android:layout_marginEnd">@dimen/space_double</item>
+    </style>
 </resources>

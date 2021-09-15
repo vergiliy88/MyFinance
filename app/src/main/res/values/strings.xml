@@ -27,4 +27,9 @@
     <string name="label_del_payment_type_from_cal">удаленить данный тип выплат из календаря</string>
 
     <string name="button_del">Удалить</string>
+
+    <string name="label_hourly_payment">Почасовая оплата</string>
+    <string name="label_enabled_comments">Вкл. комментарии к выплатам</string>
+    <string name="label_replay_payments">Повторять выплаты</string>
+    <string name="label_payments_received">Показвать полученные выплаты</string>
 </resources>

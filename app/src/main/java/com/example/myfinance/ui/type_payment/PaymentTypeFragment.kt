@@ -30,6 +30,9 @@ import com.example.myfinance.ui.type_payment.dialogs.ConfirmDeletePaymentTypeDia
 import com.example.myfinance.ui.type_payment.dialogs.ConfirmDeletePaymentTypeDialog.Companion.TAG_PAYMENT_TYPE_POSITION
 import com.example.myfinance.utils.Constants.Companion.DEFAULT_DAY
 import com.example.myfinance.utils.Constants.Companion.DEFAULT_SUM
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.DiffUtil.DiffResult
+
 
 class PaymentTypeFragment: BaseFragment<FragmentPaymentTypeBinding>() {
 
@@ -137,8 +140,13 @@ class PaymentTypeFragment: BaseFragment<FragmentPaymentTypeBinding>() {
 
         _viewModal.paymentTypes.observe(viewLifecycleOwner, {
             it?.let {
+                val productDiffUtilCallback =
+                    PaymentTypeDiffUtilCallback(adapter.data, it)
+                val productDiffResult = DiffUtil.calculateDiff(productDiffUtilCallback)
+
                 adapter.clear()
                 adapter.populate(it)
+                productDiffResult.dispatchUpdatesTo(adapter)
             }
         })
 

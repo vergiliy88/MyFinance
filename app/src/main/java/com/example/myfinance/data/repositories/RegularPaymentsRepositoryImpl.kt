@@ -8,14 +8,13 @@ import com.example.myfinance.data.mappers.MapRegularPayments
 
 
 class RegularPaymentsRepositoryImpl: RegularPaymentsRepository {
-    var db: DataBase = App.getInstance().database
+    var db = App.getInstance().database.regularPaymentsDao()
     override suspend fun saveRegularPayments(regularPayments: RegularPayments): Long {
-        return db.regularPaymentsDao()
-            .insertRegularPayments(MapRegularPayments.mapTomDb(regularPayments))
+        return db.insertRegularPayments(MapRegularPayments.mapTomDb(regularPayments))
     }
 
     override suspend fun getRegularPayments(): RegularPayments {
-        val list = db.regularPaymentsDao().getAllRegularPayments()
+        val list = db.getAllRegularPayments()
         if (list.isEmpty()) {
             return RegularPayments()
         }
@@ -23,7 +22,6 @@ class RegularPaymentsRepositoryImpl: RegularPaymentsRepository {
     }
 
     override suspend fun updateRegularPayments(regularPayments: RegularPayments) {
-        db.regularPaymentsDao()
-            .updateRegularPayments(MapRegularPayments.mapTomDb(regularPayments))
+        db.updateRegularPayments(MapRegularPayments.mapTomDb(regularPayments))
     }
 }

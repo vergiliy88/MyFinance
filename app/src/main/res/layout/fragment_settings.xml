@@ -1,20 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text_settings"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/is_hourly_payment"
+            style="@style/Switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/LabelList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_hourly_payment"
+            app:layout_constraintBottom_toBottomOf="@+id/is_hourly_payment"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/enabled_comments"
+            style="@style/Switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/is_hourly_payment"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/LabelList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_enabled_comments"
+            app:layout_constraintBottom_toBottomOf="@+id/enabled_comments"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/is_replay_payments"
+            style="@style/Switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enabled_comments"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/LabelList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_replay_payments"
+            app:layout_constraintBottom_toBottomOf="@+id/is_replay_payments"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/payment_received"
+            style="@style/Switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/is_replay_payments"/>
+
+        <TextView
+            android:id="@+id/textView4"
+            style="@style/LabelList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_payments_received"
+            app:layout_constraintBottom_toBottomOf="@+id/payment_received"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
