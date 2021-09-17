@@ -1,28 +1,20 @@
 package com.example.myfinance.ui.statistics
 
-import android.graphics.Color
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.example.myfinance.databinding.FragmentStatisticsBinding
 import com.example.myfinance.ui.base.BaseFragment
-
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.utils.ColorTemplate
-import android.text.style.ForegroundColorSpan
-import android.graphics.Typeface
-import android.text.style.StyleSpan
-import android.text.style.RelativeSizeSpan
-import android.text.SpannableString
-import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.data.PieData
-import com.github.mikephil.charting.utils.MPPointF
 import com.github.mikephil.charting.data.PieDataSet
-import android.R
 import com.github.mikephil.charting.data.PieEntry
+import kotlin.collections.ArrayList
 
 
 class StatisticsFragment: BaseFragment<FragmentStatisticsBinding>() {
@@ -34,6 +26,14 @@ class StatisticsFragment: BaseFragment<FragmentStatisticsBinding>() {
         fun newInstance(): StatisticsFragment {
             return StatisticsFragment()
         }
+    }
+
+    private lateinit var _viewModal: StatisticsViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        _viewModal =
+            ViewModelProvider(requireActivity()).get(StatisticsViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -49,6 +49,35 @@ class StatisticsFragment: BaseFragment<FragmentStatisticsBinding>() {
         val buttonDateFrom = binding.buttonDateFrom
         val buttonDateTo = binding.buttonDateTo
 
+        buttonDateFrom.setOnClickListener {
+            val dpd = DatePickerDialog(requireContext(), { view, year, monthOfYear, dayOfMonth ->
+                _viewModal.setDateFrom(year, monthOfYear, dayOfMonth)
+            }, _viewModal.dateFrom.value!!.year!!, _viewModal.dateFrom.value!!.month!!, _viewModal.dateFrom.value!!.day!!)
+            dpd.show()
+        }
+
+        buttonDateTo.setOnClickListener {
+            val dpd = DatePickerDialog(requireContext(), { view, year, monthOfYear, dayOfMonth ->
+                _viewModal.setDateTo(year, monthOfYear, dayOfMonth)
+            }, _viewModal.dateTo.value!!.year!!, _viewModal.dateTo.value!!.month!!, _viewModal.dateTo.value!!.day!!)
+            dpd.show()
+        }
+
+        _viewModal.dateFrom.observe(viewLifecycleOwner, {
+            it?.let {dateFrom ->
+                buttonDateFrom.text = "${dateFrom!!.day!!}." +
+                                    "${dateFrom!!.month!! + 1}." +
+                                    "${dateFrom!!.year!!}"
+            }
+        })
+
+        _viewModal.dateTo.observe(viewLifecycleOwner, {
+            it?.let {dateTo->
+                buttonDateTo.text = "${dateTo!!.day!!}." +
+                                    "${dateTo!!.month!! + 1}." +
+                                    "${dateTo!!.year!!}"
+            }
+        })
 
         setData()
 
