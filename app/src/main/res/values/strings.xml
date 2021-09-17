@@ -32,4 +32,7 @@
     <string name="label_enabled_comments">Вкл. комментарии к выплатам</string>
     <string name="label_replay_payments">Повторять выплаты</string>
     <string name="label_payments_received">Показвать полученные выплаты</string>
+
+    <string name="date_from">С:</string>
+    <string name="date_to">ДО:</string>
 </resources>

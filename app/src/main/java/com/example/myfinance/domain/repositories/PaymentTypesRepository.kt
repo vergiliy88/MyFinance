@@ -2,9 +2,10 @@ package com.example.myfinance.domain.repositories
 
 
 import com.example.myfinance.domain.models.PaymentType
+import kotlinx.coroutines.flow.Flow
 
 interface PaymentTypesRepository {
-    suspend fun getPaymentTypes(): List<PaymentType>
+    fun getPaymentTypes(): Flow<List<PaymentType>>
     suspend fun savePaymentType(paymentType: PaymentType): Long
     suspend fun updatePaymentType(paymentType: PaymentType)
     suspend fun delPaymentTypes(paymentTypeId: PaymentType, isDelFromCal: Boolean): Boolean

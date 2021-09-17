@@ -3,6 +3,7 @@ package com.example.myfinance.data.dao
 
 import androidx.room.*
 import com.example.myfinance.data.entities.PaymentTypeDB
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PaymentTypeDAO  {
@@ -11,7 +12,7 @@ interface PaymentTypeDAO  {
     suspend fun insertPaymentType(payments: PaymentTypeDB): Long
 
     @Query("SELECT * FROM PaymentTypeDB")
-    suspend fun getAllPaymentTypes(): List<PaymentTypeDB>
+    fun getAllPaymentTypes(): Flow<List<PaymentTypeDB>>
 
     @Update
     suspend fun updatePaymentType(payments: PaymentTypeDB)

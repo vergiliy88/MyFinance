@@ -46,6 +46,14 @@
         <item name="android:layout_marginEnd">@dimen/space_small</item>
     </style>
 
+    <style name="ButtonStatistic" parent="@style/Widget.AppCompat.Button.Colored">
+        <item name="android:layout_height">@dimen/view_color_size</item>
+        <item name="android:layout_marginTop">@dimen/space_small</item>
+        <item name="android:layout_marginBottom">@dimen/space_small</item>
+        <item name="android:layout_marginStart">@dimen/space_small</item>
+        <item name="android:layout_marginEnd">@dimen/space_small</item>
+    </style>
+
     <style name="InputNumber">
         <item name="android:textColor">@color/label_color</item>
         <item name="android:textSize">@dimen/text_medium</item>

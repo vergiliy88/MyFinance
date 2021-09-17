@@ -4,11 +4,12 @@ import com.example.myfinance.App
 import com.example.myfinance.data.mappers.MapPaymentTypes
 import com.example.myfinance.domain.models.PaymentType
 import com.example.myfinance.domain.repositories.PaymentTypesRepository
+import kotlinx.coroutines.flow.Flow
 
 class PaymentTypesRepositoryImpl: PaymentTypesRepository {
     private var _db = App.getInstance().database.paymentTypeDao()
 
-    override suspend fun getPaymentTypes(): List<PaymentType> {
+    override fun getPaymentTypes(): Flow<List<PaymentType>> {
         val list = _db.getAllPaymentTypes()
         return MapPaymentTypes.mapFromDbList(list)
     }

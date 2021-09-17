@@ -31,7 +31,6 @@ import com.example.myfinance.ui.type_payment.dialogs.ConfirmDeletePaymentTypeDia
 import com.example.myfinance.utils.Constants.Companion.DEFAULT_DAY
 import com.example.myfinance.utils.Constants.Companion.DEFAULT_SUM
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.DiffUtil.DiffResult
 
 
 class PaymentTypeFragment: BaseFragment<FragmentPaymentTypeBinding>() {
@@ -72,7 +71,6 @@ class PaymentTypeFragment: BaseFragment<FragmentPaymentTypeBinding>() {
             R.id.button_edit to BaseAdapter.OnViewClickListener { _, value ->
                 val list = _viewModal.paymentTypes.value
                 val position = value as Int
-                _viewModal.setSelectedPaymentsType(position)
                 list?.get(position)?.let {
                     val dialog = AddPaymentTypeDialog.newInstance(it)
                     dialog.setTargetFragment(this, ADD_TYPE_RESULT)
@@ -82,7 +80,6 @@ class PaymentTypeFragment: BaseFragment<FragmentPaymentTypeBinding>() {
             R.id.button_remove to BaseAdapter.OnViewClickListener { _, value ->
                 val list = _viewModal.paymentTypes.value
                 val position = value as Int
-                _viewModal.setSelectedPaymentsType(position)
                 list?.get(position)?.let {
                     val dialog = ConfirmDeletePaymentTypeDialog.newInstance(position)
                     dialog.setTargetFragment(this, CONFIRM_DEL_PAYMENT_TYPE)
@@ -151,7 +148,6 @@ class PaymentTypeFragment: BaseFragment<FragmentPaymentTypeBinding>() {
         })
 
         _viewModal.getRegularPayments()
-        _viewModal.getPaymentsTypes()
 
         return root
     }
