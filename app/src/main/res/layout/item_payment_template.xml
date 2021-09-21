@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    style="@style/CardViewStyle"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/space_double">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/space_normal"
+        android:paddingTop="@dimen/space_small"
+        android:paddingEnd="@dimen/space_normal"
+        android:paddingBottom="@dimen/space_small">
+
+        <CheckBox
+            android:id="@+id/check_box_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/label_payment_template_color"
+            style="@style/ViewColor"
+            app:layout_constraintStart_toEndOf="@+id/check_box_selected"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/label_payment_param"
+            style="@style/LabelList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="шабашка по такси"
+            app:layout_constraintBottom_toBottomOf="@+id/label_payment_template_color"
+            app:layout_constraintStart_toEndOf="@+id/label_payment_template_color"
+            app:layout_constraintTop_toTopOf="@+id/label_payment_template_color" />
+
+        <EditText
+            android:id="@+id/edit_text_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:hint="@string/label_payment_comment"
+            android:layout_marginTop="@dimen/space_normal"
+            android:layout_marginBottom="@dimen/space_normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label_payment_param"/>
+
+        <EditText
+            android:id="@+id/edit_text_real_sum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:hint="@string/label_real_payment_sum"
+            android:layout_marginTop="@dimen/space_normal"
+            android:layout_marginBottom="@dimen/space_normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_text_comment"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

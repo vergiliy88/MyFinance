@@ -1,5 +1,6 @@
 package com.example.myfinance.ui.statistics
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.myfinance.databinding.FragmentStatisticsBinding
+import com.example.myfinance.domain.utils.Utils
 import com.example.myfinance.ui.base.BaseFragment
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
@@ -36,6 +38,7 @@ class StatisticsFragment: BaseFragment<FragmentStatisticsBinding>() {
             ViewModelProvider(requireActivity()).get(StatisticsViewModel::class.java)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -65,17 +68,17 @@ class StatisticsFragment: BaseFragment<FragmentStatisticsBinding>() {
 
         _viewModal.dateFrom.observe(viewLifecycleOwner, {
             it?.let {dateFrom ->
-                buttonDateFrom.text = "${dateFrom!!.day!!}." +
-                                    "${dateFrom!!.month!! + 1}." +
-                                    "${dateFrom!!.year!!}"
+                buttonDateFrom.text = "${dateFrom.day!!}." +
+                                    "${Utils.convertMonthFromCal(dateFrom.month!! + 1)}." +
+                                    "${dateFrom.year!!}"
             }
         })
 
         _viewModal.dateTo.observe(viewLifecycleOwner, {
             it?.let {dateTo->
-                buttonDateTo.text = "${dateTo!!.day!!}." +
-                                    "${dateTo!!.month!! + 1}." +
-                                    "${dateTo!!.year!!}"
+                buttonDateTo.text = "${dateTo.day!!}." +
+                                    "${Utils.convertMonthFromCal(dateTo.month!! + 1)}." +
+                                    "${dateTo.year!!}"
             }
         })
 

@@ -4,7 +4,7 @@ import com.example.myfinance.domain.models.Settings
 import com.example.myfinance.domain.repositories.SettingsRepository
 
 class GetSettings(private val settingsRepository: SettingsRepository) {
-    suspend fun execute(): Settings {
+    suspend fun getAll(): Settings {
         return settingsRepository.getSettings()
     }
 }

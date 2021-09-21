@@ -28,12 +28,12 @@ class PaymentTypeViewModel: BaseViewModal() {
         value = null
     }
     val regularPayments: LiveData<RegularPayments> = _regularPayments
-    var paymentTypes: LiveData<List<PaymentType>> = getPaymentTypesUseCase.execute().asLiveData()
+    var paymentTypes: LiveData<List<PaymentType>> = getPaymentTypesUseCase.getAllFlow().asLiveData()
 
     fun getRegularPayments() {
         if (_regularPayments.value == null) {
             viewModelScope.launch {
-                _regularPayments.value = getRegularPaymentsUseCase.execute()
+                _regularPayments.value = getRegularPaymentsUseCase.getAll()
             }
         }
     }

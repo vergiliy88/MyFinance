@@ -6,7 +6,15 @@ import com.example.myfinance.domain.repositories.PaymentTypesRepository
 import kotlinx.coroutines.flow.Flow
 
 class GetPaymentTypes(private val paymentTypeRepository: PaymentTypesRepository) {
-    fun execute(): Flow<List<PaymentType>> {
-        return paymentTypeRepository.getPaymentTypes()
+    fun getAllFlow(): Flow<List<PaymentType>> {
+        return paymentTypeRepository.getPaymentTypesFlow()
+    }
+
+    suspend fun getAll(): List<PaymentType> {
+        return paymentTypeRepository.getPaymentTypeAll()
+    }
+
+    suspend fun getSingle(id: Long): PaymentType {
+        return paymentTypeRepository.getPayment(id)
     }
 }

@@ -1,18 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
-    <com.applandeo.materialcalendarview.CalendarView
-        android:id="@+id/calendarView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent">
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.applandeo.materialcalendarview.CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/label_total_salary"
+            style="@style/Label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_small"
+            android:layout_marginTop="@dimen/space_double"
+            android:gravity="end"
+            android:text="@string/label_total_salary"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
+        <TextView
+            android:id="@+id/value_total_salary"
+            style="@style/Label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_small"
+            app:layout_constraintStart_toEndOf="@+id/label_total_salary"
+            app:layout_constraintTop_toTopOf="@+id/label_total_salary"
+            tools:text="1000000 р." />
+
+        <TextView
+            android:id="@+id/label_total_payments"
+            style="@style/Label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_double"
+            android:layout_marginStart="@dimen/space_small"
+            android:gravity="end"
+            android:text="@string/label_total_payment"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label_total_salary" />
+
+        <TextView
+            android:id="@+id/value_total_payments"
+            style="@style/Label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_small"
+            app:layout_constraintBottom_toBottomOf="@+id/label_total_payments"
+            app:layout_constraintStart_toEndOf="@+id/label_total_payments"
+            app:layout_constraintTop_toTopOf="@+id/label_total_payments"
+            tools:text="1000000 р." />
+
+        <TextView
+            android:id="@+id/label_total"
+            style="@style/Label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_small"
+            android:layout_marginTop="@dimen/space_double"
+            android:layout_marginBottom="@dimen/space_double"
+            android:gravity="end"
+            android:text="@string/label_total"
+            android:textSize="@dimen/text_title"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label_total_payments"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/value_total"
+            style="@style/Label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_small"
+            android:textSize="@dimen/text_title"
+            app:layout_constraintBottom_toBottomOf="@+id/label_total"
+            app:layout_constraintStart_toEndOf="@+id/label_total"
+            app:layout_constraintTop_toTopOf="@+id/label_total"
+            tools:text="1000000 р." />
+
+        <Button
+            android:id="@+id/button_add_payment"
+            style="@style/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/space_double"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/button_add_payment"
+            app:layout_constraintBottom_toBottomOf="@+id/label_total"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/label_total_salary" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

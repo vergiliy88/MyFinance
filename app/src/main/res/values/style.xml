@@ -15,10 +15,15 @@
 
     <style name="Button" parent="@style/Widget.AppCompat.Button.Colored">
         <item name="android:layout_marginTop">@dimen/space_double</item>
+        <item name="android:background">@drawable/border_radius</item>
+        <item name="android:backgroundTint">@color/teal_200</item>
+        <item name="android:paddingStart">@dimen/space_normal</item>
+        <item name="android:paddingEnd">@dimen/space_normal</item>
     </style>
 
     <style name="ViewColor">
-        <item name="android:background">@color/black</item>
+        <item name="android:background">@drawable/border_radius</item>
+        <item name="android:backgroundTint">@color/teal_200</item>
         <item name="android:layout_width">@dimen/view_color_size</item>
         <item name="android:layout_height">@dimen/view_color_size</item>
         <item name="android:layout_marginTop">@dimen/space_small</item>
@@ -52,6 +57,8 @@
         <item name="android:layout_marginBottom">@dimen/space_small</item>
         <item name="android:layout_marginStart">@dimen/space_small</item>
         <item name="android:layout_marginEnd">@dimen/space_small</item>
+        <item name="android:background">@drawable/border_radius</item>
+        <item name="android:backgroundTint">@color/teal_200</item>
     </style>
 
     <style name="InputNumber">
@@ -71,25 +78,38 @@
         <item name="android:layout_marginEnd">@dimen/space_double</item>
         <item name="android:layout_marginStart">@dimen/space_double</item>
         <item name="android:layout_marginBottom">@dimen/space_double</item>
-        <item name="android:background">@color/purple_700</item>
         <item name="android:layout_height">@dimen/button_height</item>
         <item name="android:paddingStart">@dimen/space_small</item>
         <item name="android:paddingEnd">@dimen/space_small</item>
+        <item name="android:background">@drawable/border_radius</item>
+        <item name="android:backgroundTint">@color/purple_200</item>
     </style>
 
     <style name="ButtonDialogNegative" parent="@style/Widget.AppCompat.Button.Colored">
         <item name="android:layout_marginTop">@dimen/space_large</item>
         <item name="android:layout_marginEnd">@dimen/space_double</item>
         <item name="android:layout_marginStart">@dimen/space_double</item>
-        <item name="android:background">@android:color/holo_red_dark</item>
         <item name="android:layout_marginBottom">@dimen/space_double</item>
         <item name="android:layout_height">@dimen/button_height</item>
         <item name="android:paddingStart">@dimen/space_small</item>
+        <item name="android:background">@drawable/border_radius</item>
         <item name="android:paddingEnd">@dimen/space_small</item>
+        <item name="android:backgroundTint">@android:color/holo_red_dark</item>
+
     </style>
 
     <style name="Switch">
         <item name="android:layout_marginTop">@dimen/space_double</item>
         <item name="android:layout_marginEnd">@dimen/space_double</item>
+    </style>
+
+    <style name="CardViewStyle" parent="Theme.AppCompat.Light">
+        <item name="cardCornerRadius">@dimen/space_small</item>
+        <item name="cardElevation">@dimen/space_small</item>
+        <item name="cardMaxElevation">@dimen/space_small</item>
+        <item name="contentPaddingBottom">@dimen/space_small</item>
+        <item name="contentPaddingTop">@dimen/space_small</item>
+        <item name="contentPaddingLeft">@dimen/space_small</item>
+        <item name="contentPaddingRight">@dimen/space_small</item>
     </style>
 </resources>

@@ -21,7 +21,7 @@ class SettingsViewModel: BaseViewModal() {
 
     init {
         viewModelScope.launch {
-            _settings.value = getSettingsUseCase.execute()
+            _settings.value = getSettingsUseCase.getAll()
         }
     }
 

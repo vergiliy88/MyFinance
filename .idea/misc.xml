@@ -12,14 +12,19 @@
         <entry key="..\:/Users/Vlad/AndroidStudioProjects/MyFinance/app/src/main/res/layout/fragment_settings.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Vlad/AndroidStudioProjects/MyFinance/app/src/main/res/layout/fragment_statistics.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/Vlad/AndroidStudioProjects/MyFinance/app/src/main/res/menu/bottom_nav_menu.xml" value="0.34375" />
+        <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/activity_main.xml" value="0.2125" />
         <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/dialog_add_payment_type.xml" value="0.33" />
         <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/dialog_add_prepaid.xml" value="0.34375" />
         <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/dialog_add_salary.xml" value="0.33" />
         <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/dialog_confirm_del_payment_type.xml" value="0.21302083333333333" />
-        <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/fragment_home.xml" value="0.2513586956521739" />
+        <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/fragment_add_payment.xml" value="0.2125" />
+        <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/fragment_edit_payment.xml" value="0.2125" />
+        <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/fragment_home.xml" value="0.2125" />
         <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/fragment_payment_type.xml" value="0.33" />
         <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/fragment_settings.xml" value="0.171875" />
-        <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/fragment_statistics.xml" value="0.22" />
+        <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/fragment_statistics.xml" value="0.33" />
+        <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/itam_payment_template.xml" value="0.34375" />
+        <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/item_payment_template.xml" value="0.610236220472441" />
         <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/item_payment_type.xml" value="0.34375" />
         <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/spinner_item.xml" value="0.33" />
       </map>

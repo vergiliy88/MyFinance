@@ -12,7 +12,16 @@ interface PaymentTypeDAO  {
     suspend fun insertPaymentType(payments: PaymentTypeDB): Long
 
     @Query("SELECT * FROM PaymentTypeDB")
-    fun getAllPaymentTypes(): Flow<List<PaymentTypeDB>>
+    fun getAllPaymentTypesFlow(): Flow<List<PaymentTypeDB>>
+
+    @Query("SELECT * FROM PaymentTypeDB")
+    suspend fun getAllPaymentTypes(): List<PaymentTypeDB>
+
+    @Query("SELECT * FROM PaymentTypeDB WHERE id = :id")
+    suspend fun getPaymentType(id: Long): PaymentTypeDB
+
+    @Query("SELECT * FROM PaymentTypeDB WHERE id IN (:ids)")
+    suspend fun getPaymentTypeByIds(ids: List<Long>): List<PaymentTypeDB>
 
     @Update
     suspend fun updatePaymentType(payments: PaymentTypeDB)

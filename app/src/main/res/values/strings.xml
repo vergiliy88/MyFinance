@@ -35,4 +35,12 @@
 
     <string name="date_from">С:</string>
     <string name="date_to">ДО:</string>
+
+    <string name="label_real_payment_sum">Выплачено денег</string>
+    <string name="label_payment_comment">Комментарий</string>
+
+    <string name="label_total_salary">Зарплата: </string>
+    <string name="label_total_payment">Доп. выплаты: </string>
+    <string name="label_total">Итого: </string>
+    <string name="button_add_payment">Добавить</string>
 </resources>

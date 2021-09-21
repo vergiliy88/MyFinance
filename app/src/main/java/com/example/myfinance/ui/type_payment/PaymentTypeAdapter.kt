@@ -33,7 +33,7 @@ class PaymentTypeAdapter(
             with(item) {
                 name?.text =  "${item?.name} - ${item?.sum} " +
                         "${itemView.context.resources.getString(R.string.currency)}"
-                color?.setBackgroundColor(Color.parseColor(item?.color))
+                color?.background?.setTint(Color.parseColor(item?.color))
             }
         }
     }

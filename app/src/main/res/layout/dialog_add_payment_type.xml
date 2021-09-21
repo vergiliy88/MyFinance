@@ -92,6 +92,7 @@
         android:id="@+id/button_negative"
         style="@style/ButtonDialogNegative"
         android:layout_width="wrap_content"
+        android:backgroundTint="@android:color/holo_red_dark"
         android:text="@string/button_negative"
         style:layout_constraintBottom_toBottomOf="parent"
         style:layout_constraintEnd_toEndOf="parent"
