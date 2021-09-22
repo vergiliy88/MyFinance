@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.map
 
 class MapPayment {
     companion object{
-        fun mapFromDbList(fromDB: Flow<List<PaymentDB>>): Flow<List<Payment>> {
+        fun mapFromDbListFlow(fromDB: Flow<List<PaymentDB>>): Flow<List<Payment>> {
             return fromDB.map { item ->
                 val resultList: MutableList<Payment> = mutableListOf()
                 for (paymentDB in item) {

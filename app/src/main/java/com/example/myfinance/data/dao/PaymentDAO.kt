@@ -18,6 +18,9 @@ interface PaymentDAO {
     @Query("SELECT * FROM PaymentDB WHERE strftime('%m',date) = :month AND strftime('%Y',date) = :year")
     fun getByDateFlow(month: String, year: String): Flow<List<PaymentDB>>
 
+    @Query("SELECT * FROM PaymentDB WHERE strftime('%m',date) = :month AND strftime('%Y',date) = :year")
+    suspend fun getByDate(month: String, year: String): List<PaymentDB>
+
     @Query("SELECT * FROM PaymentDB")
     suspend fun getAllPayments(): List<PaymentDB>
 

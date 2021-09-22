@@ -10,11 +10,15 @@ class PaymentRepositoryImpl: PaymentRepository {
     private var _db = App.getInstance().database.paymentDAO()
     override fun getPaymentsFlow(): Flow<List<Payment>> {
         val list = _db.getAllPaymentsFlow()
-        return MapPayment.mapFromDbList(list)
+        return MapPayment.mapFromDbListFlow(list)
     }
 
     override fun getPaymentsByDateFlow(month: String, year: String): Flow<List<Payment>> {
-        return MapPayment.mapFromDbList(_db.getByDateFlow(month, year))
+        return MapPayment.mapFromDbListFlow(_db.getByDateFlow(month, year))
+    }
+
+    override suspend fun getPaymentsByDate(month: String, year: String): List<Payment> {
+        return MapPayment.mapFromDBList(_db.getByDate(month, year))
     }
 
     override suspend fun getPayment(id: Long): Payment {

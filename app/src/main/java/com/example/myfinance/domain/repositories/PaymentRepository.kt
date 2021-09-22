@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.Flow
 interface PaymentRepository {
     fun getPaymentsFlow(): Flow<List<Payment>>
     fun getPaymentsByDateFlow(month: String, year: String): Flow<List<Payment>>
+    suspend fun getPaymentsByDate(month: String, year: String):List<Payment>
     suspend fun getPayment(id: Long): Payment
     suspend fun getAllPayments(): List<Payment>
     suspend fun savePayment(payment: Payment): Long

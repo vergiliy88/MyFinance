@@ -3,8 +3,8 @@ package com.example.myfinance.data.repositories
 import com.example.myfinance.domain.models.RegularPayments
 import com.example.myfinance.domain.repositories.RegularPaymentsRepository
 import com.example.myfinance.App
-import com.example.myfinance.data.DataBase
 import com.example.myfinance.data.mappers.MapRegularPayments
+import kotlinx.coroutines.flow.Flow
 
 
 class RegularPaymentsRepositoryImpl: RegularPaymentsRepository {
@@ -19,6 +19,10 @@ class RegularPaymentsRepositoryImpl: RegularPaymentsRepository {
             return RegularPayments()
         }
         return MapRegularPayments.mapFromDb(list.first())
+    }
+
+    override fun getRegularPaymentsFlow(): Flow<RegularPayments> {
+        return MapRegularPayments.mapFromDbListFlow(db.getAllRegularPaymentsFlow())
     }
 
     override suspend fun updateRegularPayments(regularPayments: RegularPayments) {
