@@ -65,6 +65,7 @@ class AddPaymentFragment: BaseFragment<FragmentAddPaymentBinding>(),
 
         buttonSavePayment.setOnClickListener {
             _viewModal.savePayments()
+            parentFragmentManager.popBackStack()
         }
 
         _viewModal.dateFrom.observe(viewLifecycleOwner, {
@@ -83,14 +84,15 @@ class AddPaymentFragment: BaseFragment<FragmentAddPaymentBinding>(),
             }
         })
 
-        _viewModal.paymentTemplate.observe(viewLifecycleOwner, {
-            it?.let { item ->
+        _viewModal.paymentTypes.observe(viewLifecycleOwner, {
+            it?.let {
+                val items = _viewModal.paymentTemplate
                 val productDiffUtilCallback =
-                    AddPaymentTemplateDiffUtilCallback(adapter.data, item)
+                    AddPaymentTemplateDiffUtilCallback(adapter.data, items)
                 val productDiffResult = DiffUtil.calculateDiff(productDiffUtilCallback)
 
                 adapter.clear()
-                adapter.populate(item)
+                adapter.populate(items)
                 productDiffResult.dispatchUpdatesTo(adapter)
             }
         })

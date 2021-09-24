@@ -17,6 +17,7 @@ import com.example.myfinance.ui.statistics.StatisticsFragment
 import com.example.myfinance.ui.statistics.StatisticsViewModel
 import com.example.myfinance.ui.type_payment.PaymentTypeFragment
 import com.example.myfinance.ui.type_payment.PaymentTypeViewModel
+import com.example.myfinance.utils.SettingsState
 import com.example.myfinance.utils.UiUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -26,7 +27,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var mainViewModel: MainViewModal
     private var toolbar: ActionBar? = null
-    private var menuPosition: Int?  = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,19 +43,12 @@ class MainActivity : AppCompatActivity() {
         val navigation: BottomNavigationView = binding.navView
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        mainViewModel.positionMenu.observe(this, Observer {
-            menuPosition = it
+        mainViewModel.positionMenu.observe(this, Observer { menuItem ->
+            if (menuItem == null) {
+                loadFragment(HomeFragment.newInstance())
+                toolbar?.setTitle(R.string.title_home)
+            }
         })
-
-        menuPosition = mainViewModel.positionMenu.value
-
-        if (menuPosition == null) {
-
-            loadFragment(HomeFragment.newInstance())
-            toolbar?.setTitle(R.string.title_home)
-        } else {
-            showSelectedScreen(menuPosition!!)
-        }
     }
 
     private fun showSelectedScreen(menuId: Int): Boolean {

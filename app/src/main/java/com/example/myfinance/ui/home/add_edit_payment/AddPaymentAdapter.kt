@@ -16,7 +16,7 @@ import com.example.myfinance.ui.base.BaseViewHolder
 import com.example.myfinance.ui.entities.PaymentTemplate
 import java.util.*
 
-class AddPaymentAdapter (): BaseAdapter<PaymentTemplate, AddPaymentAdapter.Vh>(
+class AddPaymentAdapter: BaseAdapter<PaymentTemplate, AddPaymentAdapter.Vh>(
     R.layout.item_payment_template,
 ) {
     lateinit var setSelectedPaymentType: SetSelectedPaymentType
@@ -51,8 +51,23 @@ class AddPaymentAdapter (): BaseAdapter<PaymentTemplate, AddPaymentAdapter.Vh>(
                 isSelectedType = findViewById(R.id.check_box_selected)
                 comment = findViewById(R.id.edit_text_comment)
                 realSum = findViewById(R.id.edit_text_real_sum)
+            }
+        }
+
+        @SuppressLint("SetTextI18n")
+        override fun bindData(item: PaymentTemplate?) {
+            with(item) {
+                paymentParam?.text =  "${item?.paymentParam} - ${item?.sum} " +
+                        itemView.context.resources.getString(R.string.currency)
+                color?.background?.setTint(Color.parseColor(item?.color))
+                comment?.setText(item?.comment ?: "")
+                val realSumValue = item?.realSum ?: ""
+                realSum?.setText(realSumValue.toString())
+                isSelectedType?.setChecked(item?.isSelected ?: false)
+
                 isSelectedType?.setOnCheckedChangeListener{ view, isChecked  ->
                     setSelectedPaymentType.onSelectPaymentType(adapterPosition)
+//                    item?.isSelected = isChecked
                 }
                 comment?.addTextChangedListener(object : TextWatcher {
                     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -103,15 +118,6 @@ class AddPaymentAdapter (): BaseAdapter<PaymentTemplate, AddPaymentAdapter.Vh>(
                         }, 600)
                     }
                 })
-            }
-        }
-
-        @SuppressLint("SetTextI18n")
-        override fun bindData(item: PaymentTemplate?) {
-            with(item) {
-                paymentParam?.text =  "${item?.paymentParam} - ${item?.sum} " +
-                        itemView.context.resources.getString(R.string.currency)
-                color?.background?.setTint(Color.parseColor(item?.color))
             }
         }
     }

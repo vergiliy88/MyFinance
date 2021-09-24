@@ -23,6 +23,6 @@ class AddPaymentTemplateDiffUtilCallback (private val oldList :List<PaymentTempl
         val oldProduct: PaymentTemplate = oldList[oldItemPosition]
         val newProduct: PaymentTemplate = newList[newItemPosition]
         return (oldProduct.comment.equals(newProduct.comment)
-                && (oldProduct.realSum === newProduct.realSum))
+                && (oldProduct.realSum === newProduct.realSum) && (oldProduct.isSelected == newProduct.isSelected))
     }
 }

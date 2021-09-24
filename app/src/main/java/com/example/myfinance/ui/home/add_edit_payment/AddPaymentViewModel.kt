@@ -20,36 +20,16 @@ import java.util.*
 class AddPaymentViewModel: BaseViewModal() {
 
     private val savePaymentUseCase = SavePayment(PaymentRepositoryImpl())
-
     private val calendar: Calendar = Calendar.getInstance();
-
     private val getPaymentTypesUseCase = GetPaymentTypes(PaymentTypesRepositoryImpl())
-
     private val _paymentTypes = MutableLiveData<List<PaymentType>>().apply {
         value = listOf()
     }
     val paymentTypes: LiveData<List<PaymentType>> = _paymentTypes
-
-    private val _paymentTemplate = MutableLiveData<List<PaymentTemplate>>().apply {
-        value = listOf()
-    }
-    val paymentTemplate: LiveData<List<PaymentTemplate>> = _paymentTemplate
+    var paymentTemplate: MutableList<PaymentTemplate> = mutableListOf()
 
     init {
-        viewModelScope.launch {
-            val listPaymentTypes = getPaymentTypesUseCase.getAll()
-            _paymentTypes.value = listPaymentTypes
-            val listPaymentTemplate: MutableList<PaymentTemplate> = mutableListOf()
-            listPaymentTypes.forEach {
-                val paymentTemplate = PaymentTemplate()
-                paymentTemplate.paymentType = it.id
-                paymentTemplate.color = it.color
-                paymentTemplate.paymentParam = it.name
-                paymentTemplate.sum = it.sum
-                listPaymentTemplate.add(paymentTemplate)
-            }
-            _paymentTemplate.value = listPaymentTemplate
-        }
+        generateList()
     }
 
     private val _dateFrom = MutableLiveData<StatisticDate>().apply {
@@ -89,24 +69,21 @@ class AddPaymentViewModel: BaseViewModal() {
     }
 
     fun setPaymentTemplateSelected(position: Int) {
-        val list = paymentTemplate.value
-        list?.get(position)?.isSelected = list?.get(position)?.isSelected != true
-        _paymentTemplate.value = list
+        val list = paymentTemplate
+        list[position].isSelected = list[position].isSelected != true
     }
 
     fun setCommentPaymentTemplate(position: Int, value: String) {
         viewModelScope.launch {
-            val list = paymentTemplate.value
-            list?.get(position)?.comment = value
-            _paymentTemplate.value = list
+            val list = paymentTemplate
+            list[position].comment = value
         }
     }
 
     fun setSumPaymentTemplate(position: Int, value: Double) {
         viewModelScope.launch {
-            val list = paymentTemplate.value
-            list?.get(position)?.realSum = value
-            _paymentTemplate.value = list
+            val list = paymentTemplate
+            list[position].realSum = value
         }
     }
 
@@ -115,7 +92,7 @@ class AddPaymentViewModel: BaseViewModal() {
         val dateToStr = "${dateTo.value?.year}-${convertMonthFromCal(dateTo.value?.month!!)}-${dateTo.value?.day}"
         val dateList = Utils.getRangeDates(dateFromStr, dateToStr)
         val resultList: MutableList<Payment> = mutableListOf()
-        for (itemPayment in paymentTemplate.value!!) {
+        for (itemPayment in paymentTemplate) {
             if (itemPayment.isSelected) {
                 for (date in dateList) {
                     val payment = Payment()
@@ -133,6 +110,24 @@ class AddPaymentViewModel: BaseViewModal() {
         }
         viewModelScope.launch {
             savePaymentUseCase.saveAll(resultList)
+        }
+        generateList()
+    }
+
+    private fun generateList() {
+        viewModelScope.launch {
+            val listPaymentTypes = getPaymentTypesUseCase.getAll()
+            val listPaymentTemplate: MutableList<PaymentTemplate> = mutableListOf()
+            listPaymentTypes.forEach {
+                val paymentTemplate = PaymentTemplate()
+                paymentTemplate.paymentType = it.id
+                paymentTemplate.color = it.color
+                paymentTemplate.paymentParam = it.name
+                paymentTemplate.sum = it.sum
+                listPaymentTemplate.add(paymentTemplate)
+            }
+            paymentTemplate = listPaymentTemplate
+            _paymentTypes.value = listPaymentTypes
         }
     }
 }

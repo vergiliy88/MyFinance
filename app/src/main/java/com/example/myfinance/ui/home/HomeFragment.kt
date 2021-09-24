@@ -18,10 +18,12 @@ import com.example.myfinance.ui.base.BaseFragment
 import com.example.myfinance.ui.home.add_edit_payment.AddPaymentFragment
 import com.example.myfinance.utils.Constants.Companion.defaultColor
 import com.example.myfinance.utils.UiUtils
-import java.text.SimpleDateFormat
+import com.applandeo.materialcalendarview.listeners.OnDayClickListener
+import com.example.myfinance.ui.home.dialogs.SelectEventDialog
+import com.example.myfinance.ui.type_payment.dialogs.ConfirmDeletePaymentTypeDialog
 
 
-class HomeFragment: BaseFragment<FragmentHomeBinding>() {
+class HomeFragment: BaseFragment<FragmentHomeBinding>(), SelectEventDialog.SelectTypeEvent {
 
     companion object {
         @JvmStatic
@@ -64,8 +66,13 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
             UiUtils.replaceFragment(parentFragmentManager, fragment, AddPaymentFragment.TAG_FRAGMENT)
         }
 
+        calendarView.setOnDayClickListener { eventDay ->
+            val dialog = SelectEventDialog.Builder().setListener(this).setDate(eventDay.calendar).build()
+            dialog.show(parentFragmentManager, SelectEventDialog.TAG)
+        }
+
         calendarView.setHeaderColor(R.color.purple_200)
-        calendarView.currentPageDate
+
         calendarView.setOnPreviousPageChangeListener {
             _viewModal.setMonth(calendarView.currentPageDate.get(Calendar.MONTH))
             _viewModal.setYear(calendarView.currentPageDate.get(Calendar.YEAR))
@@ -88,13 +95,13 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
             it?.let { list ->
                 calcSums(_viewModal.payments.value ?: listOf(),
                     list,
-                    _viewModal.paymentTypes.value!!)
+                    _viewModal.paymentTypes.value ?: listOf())
             }
         })
 
         _viewModal.paymentTypes.observe(viewLifecycleOwner, {
             it?.let { list ->
-                calcSums(_viewModal.payments.value!!,
+                calcSums(_viewModal.payments.value ?: listOf(),
                     _viewModal.regularPayments.value ?: RegularPayments(),
                     list)
             }
@@ -112,7 +119,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
                          regularPayments: RegularPayments,
                          paymentsType: List<PaymentType>) {
 
-        val colorsList: MutableList<String> = mutableListOf()
+
         val events: MutableList<EventDay> = ArrayList()
         val eventsByDay: MutableMap<String, MutableList<String>> = mutableMapOf()
         var sumPayments = 0.0
@@ -134,14 +141,18 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
             }
         }
 
+        events.clear()
+
         for (item in eventsByDay) {
+            val colorsList: MutableList<String> = mutableListOf()
             val calendar = Calendar.getInstance()
             for (color in item.value) {
                 colorsList.add(color)
             }
             val drawable = CustomDrawable(colorsList)
-            val sdf = SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH)
-            calendar.time = sdf.parse(item.key)
+            val sdf = item.key.split("-")
+            calendar.set(sdf[0].toInt(), sdf[1].toInt() - 1, sdf[2].toInt())
+
             events.add(EventDay(calendar, drawable))
         }
 
@@ -156,5 +167,9 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
         valueTotalSalary.text = sumSalary.toString()
         valueTotalPayments.text = sumPayments.toString()
         valueTotal.text = (sumPayments + sumSalary).toString()
+    }
+
+    override fun onSelectTypeEvent(type: Int, date: Calendar) {
+
     }
 }
