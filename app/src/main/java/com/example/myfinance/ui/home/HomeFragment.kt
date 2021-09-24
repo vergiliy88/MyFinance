@@ -62,7 +62,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), SelectEventDialog.Selec
         valueTotalSalary = binding.valueTotalSalary
 
         buttonAddPayment.setOnClickListener {
-            val fragment = AddPaymentFragment.newInstance()
+            val fragment = AddPaymentFragment.Builder().setDate(null).build()
             UiUtils.replaceFragment(parentFragmentManager, fragment, AddPaymentFragment.TAG_FRAGMENT)
         }
 
@@ -170,6 +170,11 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), SelectEventDialog.Selec
     }
 
     override fun onSelectTypeEvent(type: Int, date: Calendar) {
-
+        when(type){
+            SelectEventDialog.Companion.EventType.ADD -> {
+                val fragment = AddPaymentFragment.Builder().setDate(date).build()
+                UiUtils.replaceFragment(parentFragmentManager, fragment, AddPaymentFragment.TAG_FRAGMENT)
+            }
+        }
     }
 }

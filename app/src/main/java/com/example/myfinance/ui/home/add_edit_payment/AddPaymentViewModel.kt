@@ -1,27 +1,34 @@
 package com.example.myfinance.ui.home.add_edit_payment
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.myfinance.data.repositories.PaymentRepositoryImpl
 import com.example.myfinance.data.repositories.PaymentTypesRepositoryImpl
+import com.example.myfinance.data.repositories.RegularPaymentsRepositoryImpl
 import com.example.myfinance.domain.models.Payment
 import com.example.myfinance.domain.models.PaymentType
 import com.example.myfinance.domain.usecase.payment.SavePayment
 import com.example.myfinance.domain.usecase.payment_types.GetPaymentTypes
+import com.example.myfinance.domain.usecase.regular_payments.GetRegularPayments
 import com.example.myfinance.domain.utils.Utils.Companion.convertMonthFromCal
 import com.example.myfinance.ui.base.BaseViewModal
 import com.example.myfinance.ui.entities.PaymentTemplate
 import com.example.myfinance.ui.entities.StatisticDate
 import com.example.myfinance.utils.Utils
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.util.*
+import kotlin.coroutines.Continuation
 
 class AddPaymentViewModel: BaseViewModal() {
 
     private val savePaymentUseCase = SavePayment(PaymentRepositoryImpl())
     private val calendar: Calendar = Calendar.getInstance();
     private val getPaymentTypesUseCase = GetPaymentTypes(PaymentTypesRepositoryImpl())
+
+    private val getRegularPaymentsUseCase = GetRegularPayments(RegularPaymentsRepositoryImpl())
+
     private val _paymentTypes = MutableLiveData<List<PaymentType>>().apply {
         value = listOf()
     }
@@ -36,7 +43,7 @@ class AddPaymentViewModel: BaseViewModal() {
         val defaultDateFrom = StatisticDate()
         defaultDateFrom.year = calendar.get(Calendar.YEAR)
         defaultDateFrom.month = calendar.get(Calendar.MONTH)
-        defaultDateFrom.day = calendar.get(Calendar.DAY_OF_MONTH)
+        defaultDateFrom.day = calendar.get(Calendar.DAY_OF_MONTH - 1)
         value = defaultDateFrom
     }
 
@@ -46,7 +53,7 @@ class AddPaymentViewModel: BaseViewModal() {
         val defaultDateFrom = StatisticDate()
         defaultDateFrom.year = calendar.get(Calendar.YEAR)
         defaultDateFrom.month = calendar.get(Calendar.MONTH)
-        defaultDateFrom.day = calendar.get(Calendar.DAY_OF_MONTH)
+        defaultDateFrom.day = calendar.get(Calendar.DAY_OF_MONTH - 1)
         value = defaultDateFrom
     }
 

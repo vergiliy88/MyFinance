@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
             if (menuItem == null) {
                 loadFragment(HomeFragment.newInstance())
                 toolbar?.setTitle(R.string.title_home)
+                mainViewModel.setCurrentMenuId(R.id.navigation_home)
             }
         })
     }

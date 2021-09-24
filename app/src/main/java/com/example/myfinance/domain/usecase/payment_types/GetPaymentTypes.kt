@@ -1,6 +1,7 @@
 package com.example.myfinance.domain.usecase.payment_types
 
 
+import android.util.Log
 import com.example.myfinance.domain.models.PaymentType
 import com.example.myfinance.domain.repositories.PaymentTypesRepository
 import kotlinx.coroutines.flow.Flow

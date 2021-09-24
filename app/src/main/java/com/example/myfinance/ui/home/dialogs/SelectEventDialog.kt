@@ -16,13 +16,15 @@ open class SelectEventDialog protected constructor(): BaseDialog<DialogSelectEve
     private var selectedDate: Calendar? = null
 
     internal constructor(
-        listener: SelectTypeEvent?
+        listener: SelectTypeEvent?,
+        date: Calendar?
     ) : this() {
         this.listener = listener
+        this.selectedDate = date
     }
 
-    internal constructor(dialog: SelectEventDialog) :
-            this(dialog.listener)
+    internal constructor(dialog: SelectEventDialog, date: Calendar) :
+            this(dialog.listener, date)
 
 
     companion object {
@@ -38,6 +40,7 @@ open class SelectEventDialog protected constructor(): BaseDialog<DialogSelectEve
                 const val VIEW = 1
                 const val EDIT = 2
                 const val DEL = 3
+                const val ADD = 4
             }
         }
 
@@ -58,6 +61,14 @@ open class SelectEventDialog protected constructor(): BaseDialog<DialogSelectEve
         val buttonViewPayment: Button = binding.buttonViewPayment
         val buttonEditPayment: Button = binding.buttonEditPayment
         val buttonDelPayment: Button = binding.buttonDelPayment
+        val buttonAddPayment: Button = binding.buttonAddPayment
+
+        buttonAddPayment.setOnClickListener {
+            selectedDate?.let {
+                listener?.onSelectTypeEvent(EventType.ADD, it)
+            }
+            dismiss()
+        }
 
         buttonViewPayment.setOnClickListener {
             selectedDate?.let{
@@ -102,7 +113,7 @@ open class SelectEventDialog protected constructor(): BaseDialog<DialogSelectEve
         }
 
         open fun build(): SelectEventDialog {
-            return SelectEventDialog(listener)
+            return SelectEventDialog(listener, date)
         }
     }
 }

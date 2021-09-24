@@ -13,11 +13,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myfinance.databinding.FragmentAddPaymentBinding
 import com.example.myfinance.domain.utils.Utils
 import com.example.myfinance.ui.base.BaseFragment
+import java.util.*
 
-class AddPaymentFragment: BaseFragment<FragmentAddPaymentBinding>(),
+open class AddPaymentFragment protected constructor(): BaseFragment<FragmentAddPaymentBinding>(),
     AddPaymentAdapter.SetSelectedPaymentType, AddPaymentAdapter.SetCommentAndSumValue {
     private lateinit var _viewModal: AddPaymentViewModel
     private lateinit var adapter: AddPaymentAdapter
+
+    private var selectedDate: Calendar? = null
+
+    internal constructor(date: Calendar?) : this() {
+        this.selectedDate = date
+    }
+
+    internal constructor(dialog: AddPaymentFragment, date: Calendar) : this(date)
 
     companion object {
         const val TAG_FRAGMENT = "AddPaymentFragment"
@@ -31,6 +40,22 @@ class AddPaymentFragment: BaseFragment<FragmentAddPaymentBinding>(),
         super.onCreate(savedInstanceState)
         _viewModal =
             ViewModelProvider(requireActivity()).get(AddPaymentViewModel::class.java)
+        if (this.selectedDate == null) {
+            val calendar: Calendar = Calendar.getInstance();
+            _viewModal.setDateFrom(calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH) - 1,
+                calendar.get(Calendar.DAY_OF_MONTH))
+            _viewModal.setDateTo(calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH) - 1,
+                calendar.get(Calendar.DAY_OF_MONTH))
+        } else {
+            _viewModal.setDateFrom(this.selectedDate!!.get(Calendar.YEAR),
+                          this.selectedDate!!.get(Calendar.MONTH) - 1,
+                                 this.selectedDate!!.get(Calendar.DAY_OF_MONTH))
+            _viewModal.setDateTo(this.selectedDate!!.get(Calendar.YEAR),
+                        this.selectedDate!!.get(Calendar.MONTH) - 1,
+                              this.selectedDate!!.get(Calendar.DAY_OF_MONTH))
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -117,5 +142,18 @@ class AddPaymentFragment: BaseFragment<FragmentAddPaymentBinding>(),
 
     override fun onSetSum(position: Int, value: Double) {
         _viewModal.setSumPaymentTemplate(position, value)
+    }
+
+    open class Builder {
+        private var date: Calendar? = null
+
+        fun setDate(date: Calendar?): Builder {
+            this.date = date
+            return this
+        }
+
+        open fun build(): AddPaymentFragment {
+            return AddPaymentFragment(date)
+        }
     }
 }
