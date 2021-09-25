@@ -13,6 +13,8 @@ import com.example.myfinance.domain.usecase.payment_types.GetPaymentTypes
 import com.example.myfinance.domain.usecase.regular_payments.GetRegularPayments
 import com.example.myfinance.ui.base.BaseViewModal
 import com.example.myfinance.ui.entities.StatisticDate
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.util.*
@@ -21,6 +23,7 @@ import java.util.*
 class HomeViewModel  : BaseViewModal() {
     private val calendar: Calendar = Calendar.getInstance();
     private val date = StatisticDate()
+    private var job: Job? = null
 
     private val getPaymentUseCase = GetPayment(PaymentRepositoryImpl())
     private val getRegularPaymentsUseCase = GetRegularPayments(RegularPaymentsRepositoryImpl())
@@ -53,12 +56,16 @@ class HomeViewModel  : BaseViewModal() {
         subscribeOnPayments()
     }
 
+    @ExperimentalCoroutinesApi
     fun subscribeOnPayments() {
-        viewModelScope.launch {
-            _payments.value = getPaymentUseCase.getByDate(
+        job?.cancel()
+        job = viewModelScope.launch {
+            getPaymentUseCase.getByDateFlow(
                 currentDate.value?.month!!,
                 currentDate.value?.year!!
-            )
+            ).collectLatest{
+                _payments.value = it
+            }
         }
     }
 }

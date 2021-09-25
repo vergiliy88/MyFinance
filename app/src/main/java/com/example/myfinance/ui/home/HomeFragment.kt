@@ -52,7 +52,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), SelectEventDialog.Selec
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-
+//        _viewModal.subscribeOnPayments()
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -108,7 +108,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), SelectEventDialog.Selec
             }
         })
 
-        _viewModal.subscribeOnPayments()
+
 
         return root
     }
