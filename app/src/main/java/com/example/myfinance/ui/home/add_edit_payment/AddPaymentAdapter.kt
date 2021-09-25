@@ -108,10 +108,13 @@ class AddPaymentAdapter: BaseAdapter<PaymentTemplate, AddPaymentAdapter.Vh>(
                             override fun run() {
                                 editable?.let { text ->
                                     if (adapterPosition != RecyclerView.NO_POSITION) {
-                                        setCommentAndSumValue.onSetSum(
-                                            adapterPosition,
-                                            text.toString().toDouble()
-                                        )
+                                        if (text.isNotEmpty()) {
+                                            setCommentAndSumValue.onSetSum(
+                                                adapterPosition,
+                                                text.toString().toDouble()
+                                            )
+                                        }
+
                                     }
                                 }
                             }

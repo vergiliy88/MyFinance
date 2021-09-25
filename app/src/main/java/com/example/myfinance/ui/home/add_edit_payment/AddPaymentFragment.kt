@@ -43,19 +43,20 @@ open class AddPaymentFragment protected constructor(): BaseFragment<FragmentAddP
         if (this.selectedDate == null) {
             val calendar: Calendar = Calendar.getInstance();
             _viewModal.setDateFrom(calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH) - 1,
+                calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH))
             _viewModal.setDateTo(calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH) - 1,
+                calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH))
         } else {
             _viewModal.setDateFrom(this.selectedDate!!.get(Calendar.YEAR),
-                          this.selectedDate!!.get(Calendar.MONTH) - 1,
+                          this.selectedDate!!.get(Calendar.MONTH),
                                  this.selectedDate!!.get(Calendar.DAY_OF_MONTH))
             _viewModal.setDateTo(this.selectedDate!!.get(Calendar.YEAR),
-                        this.selectedDate!!.get(Calendar.MONTH) - 1,
+                        this.selectedDate!!.get(Calendar.MONTH),
                               this.selectedDate!!.get(Calendar.DAY_OF_MONTH))
         }
+        _viewModal.generateList()
     }
 
     @SuppressLint("SetTextI18n")
@@ -96,7 +97,7 @@ open class AddPaymentFragment protected constructor(): BaseFragment<FragmentAddP
         _viewModal.dateFrom.observe(viewLifecycleOwner, {
             it?.let {dateFrom ->
                 buttonDateFrom.text = "${dateFrom.day!!}." +
-                        "${Utils.convertMonthFromCal(dateFrom.month!! + 1)}." +
+                        "${Utils.convertMonthFromCal(dateFrom.month!!)}." +
                         "${dateFrom.year!!}"
             }
         })
@@ -104,7 +105,7 @@ open class AddPaymentFragment protected constructor(): BaseFragment<FragmentAddP
         _viewModal.dateTo.observe(viewLifecycleOwner, {
             it?.let {dateTo->
                 buttonDateTo.text = "${dateTo.day!!}." +
-                        "${Utils.convertMonthFromCal(dateTo.month!! + 1)}." +
+                        "${Utils.convertMonthFromCal(dateTo.month!!)}." +
                         "${dateTo.year!!}"
             }
         })

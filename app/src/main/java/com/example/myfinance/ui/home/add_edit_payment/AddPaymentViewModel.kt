@@ -3,6 +3,7 @@ package com.example.myfinance.ui.home.add_edit_payment
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.myfinance.data.repositories.PaymentRepositoryImpl
 import com.example.myfinance.data.repositories.PaymentTypesRepositoryImpl
@@ -26,24 +27,17 @@ class AddPaymentViewModel: BaseViewModal() {
     private val savePaymentUseCase = SavePayment(PaymentRepositoryImpl())
     private val calendar: Calendar = Calendar.getInstance();
     private val getPaymentTypesUseCase = GetPaymentTypes(PaymentTypesRepositoryImpl())
-
-    private val getRegularPaymentsUseCase = GetRegularPayments(RegularPaymentsRepositoryImpl())
-
     private val _paymentTypes = MutableLiveData<List<PaymentType>>().apply {
         value = listOf()
     }
     val paymentTypes: LiveData<List<PaymentType>> = _paymentTypes
     var paymentTemplate: MutableList<PaymentTemplate> = mutableListOf()
 
-    init {
-        generateList()
-    }
-
     private val _dateFrom = MutableLiveData<StatisticDate>().apply {
         val defaultDateFrom = StatisticDate()
         defaultDateFrom.year = calendar.get(Calendar.YEAR)
         defaultDateFrom.month = calendar.get(Calendar.MONTH)
-        defaultDateFrom.day = calendar.get(Calendar.DAY_OF_MONTH - 1)
+        defaultDateFrom.day = calendar.get(Calendar.DAY_OF_MONTH)
         value = defaultDateFrom
     }
 
@@ -53,7 +47,7 @@ class AddPaymentViewModel: BaseViewModal() {
         val defaultDateFrom = StatisticDate()
         defaultDateFrom.year = calendar.get(Calendar.YEAR)
         defaultDateFrom.month = calendar.get(Calendar.MONTH)
-        defaultDateFrom.day = calendar.get(Calendar.DAY_OF_MONTH - 1)
+        defaultDateFrom.day = calendar.get(Calendar.DAY_OF_MONTH)
         value = defaultDateFrom
     }
 
@@ -104,7 +98,7 @@ class AddPaymentViewModel: BaseViewModal() {
                 for (date in dateList) {
                     val payment = Payment()
                     var realSum =  itemPayment.sum
-                    if (itemPayment.realSum != null || itemPayment.realSum != 0.0) {
+                    if (itemPayment.realSum != null && itemPayment.realSum != 0.0) {
                         realSum = itemPayment.realSum
                     }
                     payment.comment = itemPayment.comment
@@ -118,10 +112,9 @@ class AddPaymentViewModel: BaseViewModal() {
         viewModelScope.launch {
             savePaymentUseCase.saveAll(resultList)
         }
-        generateList()
     }
 
-    private fun generateList() {
+    fun generateList() {
         viewModelScope.launch {
             val listPaymentTypes = getPaymentTypesUseCase.getAll()
             val listPaymentTemplate: MutableList<PaymentTemplate> = mutableListOf()

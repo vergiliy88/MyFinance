@@ -43,6 +43,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), SelectEventDialog.Selec
         super.onCreate(savedInstanceState)
         _viewModal =
             ViewModelProvider(requireActivity()).get(HomeViewModel::class.java)
+
     }
 
     override fun onCreateView(
@@ -74,13 +75,13 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), SelectEventDialog.Selec
         calendarView.setHeaderColor(R.color.purple_200)
 
         calendarView.setOnPreviousPageChangeListener {
-            _viewModal.setMonth(calendarView.currentPageDate.get(Calendar.MONTH))
-            _viewModal.setYear(calendarView.currentPageDate.get(Calendar.YEAR))
+            _viewModal.setDate(calendarView.currentPageDate.get(Calendar.MONTH),
+                calendarView.currentPageDate.get(Calendar.YEAR))
         }
 
         calendarView.setOnForwardPageChangeListener {
-            _viewModal.setMonth(calendarView.currentPageDate.get(Calendar.MONTH))
-            _viewModal.setYear(calendarView.currentPageDate.get(Calendar.YEAR))
+            _viewModal.setDate(calendarView.currentPageDate.get(Calendar.MONTH),
+                calendarView.currentPageDate.get(Calendar.YEAR))
         }
 
         _viewModal.payments.observe(viewLifecycleOwner,{
@@ -107,6 +108,8 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), SelectEventDialog.Selec
             }
         })
 
+        _viewModal.subscribeOnPayments()
+
         return root
     }
 
@@ -126,7 +129,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), SelectEventDialog.Selec
         var sumSalary = 0.0
 
         for (item in payments){
-            sumPayments += item.realSum!!
+            sumPayments += item.realSum ?: 0.0
             if (paymentsType.isNotEmpty()) {
                 for (paymentsTypeItem in paymentsType) {
                     if (paymentsTypeItem.id!! == item.paymentType!!) {

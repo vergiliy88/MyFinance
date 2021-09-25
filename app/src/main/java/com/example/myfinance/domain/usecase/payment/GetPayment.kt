@@ -15,6 +15,11 @@ class GetPayment(private val paymentRepository: PaymentRepository) {
         return paymentRepository.getPaymentsByDateFlow(monthStr, year.toString())
     }
 
+    suspend fun getByDate(month: Int, year: Int): List<Payment> {
+        val monthStr = Utils.convertMonthFromCal(month)
+        return paymentRepository.getPaymentsByDate(monthStr, year.toString())
+    }
+
     suspend fun getAll(): List<Payment> {
         return paymentRepository.getAllPayments()
     }
