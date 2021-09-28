@@ -12,7 +12,7 @@ import com.example.myfinance.domain.usecase.payment.GetPayment
 import com.example.myfinance.domain.usecase.payment_types.GetPaymentTypes
 import com.example.myfinance.domain.usecase.regular_payments.GetRegularPayments
 import com.example.myfinance.ui.base.BaseViewModal
-import com.example.myfinance.ui.entities.StatisticDate
+import com.example.myfinance.ui.models.StatisticDate
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 
+@ExperimentalCoroutinesApi
 class HomeViewModel  : BaseViewModal() {
     private val calendar: Calendar = Calendar.getInstance();
     private val date = StatisticDate()
@@ -39,16 +40,22 @@ class HomeViewModel  : BaseViewModal() {
         value = listOf()
     }
 
+    private val _isShowLoading = MutableLiveData<Boolean>().apply {
+        value = true
+    }
+
     private val currentDate: LiveData<StatisticDate> = _currentDate
 
     val regularPayments: LiveData<RegularPayments> = getRegularPaymentsUseCase.getAllFlow().asLiveData()
     var paymentTypes: LiveData<List<PaymentType>> = getPaymentTypesUseCase.getAllFlow().asLiveData()
     var payments: LiveData<List<Payment>> = _payments
+    var isShowLoading: LiveData<Boolean> = _isShowLoading
 
     init {
         subscribeOnPayments()
     }
 
+    @ExperimentalCoroutinesApi
     fun setDate(month: Int, year: Int) {
         date.year = year
         date.month = month
@@ -58,6 +65,7 @@ class HomeViewModel  : BaseViewModal() {
 
     @ExperimentalCoroutinesApi
     fun subscribeOnPayments() {
+        _isShowLoading.value = true
         job?.cancel()
         job = viewModelScope.launch {
             getPaymentUseCase.getByDateFlow(
@@ -65,6 +73,7 @@ class HomeViewModel  : BaseViewModal() {
                 currentDate.value?.year!!
             ).collectLatest{
                 _payments.value = it
+                _isShowLoading.value = false
             }
         }
     }

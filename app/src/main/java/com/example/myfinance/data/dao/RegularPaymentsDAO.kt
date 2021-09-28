@@ -1,7 +1,7 @@
 package com.example.myfinance.data.dao
 
 import androidx.room.*
-import com.example.myfinance.data.entities.RegularPaymentsDB
+import com.example.myfinance.data.models.RegularPaymentsDB
 import kotlinx.coroutines.flow.Flow
 
 @Dao

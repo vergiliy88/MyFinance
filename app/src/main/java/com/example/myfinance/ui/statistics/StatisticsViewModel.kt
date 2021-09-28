@@ -4,7 +4,7 @@ package com.example.myfinance.ui.statistics
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.myfinance.ui.base.BaseViewModal
-import com.example.myfinance.ui.entities.StatisticDate
+import com.example.myfinance.ui.models.StatisticDate
 import java.util.*
 
 

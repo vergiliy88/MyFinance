@@ -1,4 +1,4 @@
-package com.example.myfinance.ui.home.add_edit_payment
+package com.example.myfinance.ui.home.add_payment
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -13,7 +13,7 @@ import com.example.myfinance.R
 
 import com.example.myfinance.ui.base.BaseAdapter
 import com.example.myfinance.ui.base.BaseViewHolder
-import com.example.myfinance.ui.entities.PaymentTemplate
+import com.example.myfinance.ui.models.PaymentTemplate
 import java.util.*
 
 class AddPaymentAdapter: BaseAdapter<PaymentTemplate, AddPaymentAdapter.Vh>(

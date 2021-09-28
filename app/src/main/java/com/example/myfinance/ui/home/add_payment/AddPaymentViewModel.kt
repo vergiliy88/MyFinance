@@ -1,26 +1,21 @@
-package com.example.myfinance.ui.home.add_edit_payment
+package com.example.myfinance.ui.home.add_payment
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.myfinance.data.repositories.PaymentRepositoryImpl
 import com.example.myfinance.data.repositories.PaymentTypesRepositoryImpl
-import com.example.myfinance.data.repositories.RegularPaymentsRepositoryImpl
 import com.example.myfinance.domain.models.Payment
 import com.example.myfinance.domain.models.PaymentType
 import com.example.myfinance.domain.usecase.payment.SavePayment
 import com.example.myfinance.domain.usecase.payment_types.GetPaymentTypes
-import com.example.myfinance.domain.usecase.regular_payments.GetRegularPayments
 import com.example.myfinance.domain.utils.Utils.Companion.convertMonthFromCal
 import com.example.myfinance.ui.base.BaseViewModal
-import com.example.myfinance.ui.entities.PaymentTemplate
-import com.example.myfinance.ui.entities.StatisticDate
+import com.example.myfinance.ui.models.PaymentTemplate
+import com.example.myfinance.ui.models.StatisticDate
 import com.example.myfinance.utils.Utils
 import kotlinx.coroutines.*
 import java.util.*
-import kotlin.coroutines.Continuation
 
 class AddPaymentViewModel: BaseViewModal() {
 

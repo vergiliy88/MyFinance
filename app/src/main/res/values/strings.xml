@@ -70,8 +70,12 @@
     <string name="material_calendar_today_button">Сегодня</string>
     <string name="material_calendar_positive_button">OK</string>
     <string name="material_calendar_negative_button">Отмена</string>
+    <string name="button_save_payment">Сохранить</string>
 
     <string name="button_view_payment">Просмотр платежей</string>
     <string name="button_edit_payment">Редактрование платежей</string>
     <string name="button_del_payment">Удаление платжей</string>
+
+    <string name="label_date">Дата</string>
 </resources>
+

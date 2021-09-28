@@ -1,4 +1,4 @@
-package com.example.myfinance.data.entities
+package com.example.myfinance.data.models
 
 
 import androidx.room.Entity

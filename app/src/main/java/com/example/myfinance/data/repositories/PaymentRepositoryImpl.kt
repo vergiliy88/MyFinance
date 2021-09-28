@@ -3,6 +3,7 @@ package com.example.myfinance.data.repositories
 import com.example.myfinance.App
 import com.example.myfinance.data.mappers.MapPayment
 import com.example.myfinance.domain.models.Payment
+import com.example.myfinance.domain.models.PaymentJoinPaymentType
 import com.example.myfinance.domain.repositories.PaymentRepository
 import kotlinx.coroutines.flow.Flow
 
@@ -29,6 +30,14 @@ class PaymentRepositoryImpl: PaymentRepository {
         return MapPayment.mapFromDBList(_db.getAllPayments())
     }
 
+    override suspend fun getByDateForEdit(
+        day: String,
+        month: String,
+        year: String
+    ): List<PaymentJoinPaymentType> {
+        return _db.getByDateForEdit(day, month, year)
+    }
+
     override suspend fun savePayment(payment: Payment): Long {
         return _db.insertPayment(MapPayment.mapToDb(payment))
     }
@@ -39,6 +48,10 @@ class PaymentRepositoryImpl: PaymentRepository {
 
     override suspend fun updatePayment(payment: Payment) {
         return _db.updatePayment(MapPayment.mapToDb(payment))
+    }
+
+    override suspend fun updatePayments(payments: List<Payment>) {
+        _db.updatePayments(MapPayment.mapToDbList(payments))
     }
 
     override suspend fun delPayment(payment: Payment): Boolean {

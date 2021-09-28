@@ -2,7 +2,7 @@ package com.example.myfinance.data.dao
 
 
 import androidx.room.*
-import com.example.myfinance.data.entities.PaymentTypeDB
+import com.example.myfinance.data.models.PaymentTypeDB
 import kotlinx.coroutines.flow.Flow
 
 @Dao

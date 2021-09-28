@@ -3,6 +3,8 @@ package com.example.myfinance.ui.home
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
@@ -15,15 +17,15 @@ import com.example.myfinance.domain.models.Payment
 import com.example.myfinance.domain.models.PaymentType
 import com.example.myfinance.domain.models.RegularPayments
 import com.example.myfinance.ui.base.BaseFragment
-import com.example.myfinance.ui.home.add_edit_payment.AddPaymentFragment
+import com.example.myfinance.ui.home.add_payment.AddPaymentFragment
 import com.example.myfinance.utils.Constants.Companion.defaultColor
 import com.example.myfinance.utils.UiUtils
-import com.applandeo.materialcalendarview.listeners.OnDayClickListener
 import com.example.myfinance.ui.home.dialogs.SelectEventDialog
-import com.example.myfinance.ui.type_payment.dialogs.ConfirmDeletePaymentTypeDialog
+import com.example.myfinance.ui.home.view_edit_payment.ViewEditPaymentFragment
+import com.example.myfinance.ui.models.StatisticDate
 
 
-class HomeFragment: BaseFragment<FragmentHomeBinding>(), SelectEventDialog.SelectTypeEvent {
+class HomeFragment: BaseFragment<FragmentHomeBinding>() {
 
     companion object {
         @JvmStatic
@@ -61,14 +63,45 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), SelectEventDialog.Selec
         valueTotalPayments = binding.valueTotalPayments
         valueTotal = binding.valueTotal
         valueTotalSalary = binding.valueTotalSalary
+        val viewLoading = binding.loading
 
         buttonAddPayment.setOnClickListener {
-            val fragment = AddPaymentFragment.Builder().setDate(null).build()
+            val fragment = AddPaymentFragment.newInstance(null)
             UiUtils.replaceFragment(parentFragmentManager, fragment, AddPaymentFragment.TAG_FRAGMENT)
         }
 
+        val fm = parentFragmentManager
+
         calendarView.setOnDayClickListener { eventDay ->
-            val dialog = SelectEventDialog.Builder().setListener(this).setDate(eventDay.calendar).build()
+            val listener = (object: SelectEventDialog.SelectTypeEvent {
+                override fun onSelectTypeEvent(type: Int, date: StatisticDate) {
+                    when(type){
+                        SelectEventDialog.Companion.EventType.ADD -> {
+                            val fragment = AddPaymentFragment.newInstance(date)
+                            UiUtils.replaceFragment(fm,
+                                fragment,
+                                AddPaymentFragment.TAG_FRAGMENT)
+                        }
+                        SelectEventDialog.Companion.EventType.VIEW -> {
+                            val fragment = ViewEditPaymentFragment.newInstance(date, false)
+                            UiUtils.replaceFragment(fm,
+                                fragment,
+                                ViewEditPaymentFragment.TAG_FRAGMENT)
+                        }
+                        SelectEventDialog.Companion.EventType.EDIT -> {
+                            val fragment = ViewEditPaymentFragment.newInstance(date, true)
+                            UiUtils.replaceFragment(fm,
+                                fragment,
+                                ViewEditPaymentFragment.TAG_FRAGMENT)
+                        }
+                    }
+                }
+            })
+            val date  = StatisticDate()
+            date.year = eventDay.calendar.get(Calendar.YEAR)
+            date.month = eventDay.calendar.get(Calendar.MONTH)
+            date.day = eventDay.calendar.get(Calendar.DAY_OF_MONTH)
+            val dialog = SelectEventDialog.Builder().setDate(date).setListener(listener).build()
             dialog.show(parentFragmentManager, SelectEventDialog.TAG)
         }
 
@@ -108,7 +141,15 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), SelectEventDialog.Selec
             }
         })
 
-
+        _viewModal.isShowLoading.observe(viewLifecycleOwner, {
+            it?.let{ view ->
+                if (view) {
+                    viewLoading.progressBar.visibility = VISIBLE
+                } else {
+                    viewLoading.progressBar.visibility = GONE
+                }
+            }
+        })
 
         return root
     }
@@ -172,12 +213,4 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), SelectEventDialog.Selec
         valueTotal.text = (sumPayments + sumSalary).toString()
     }
 
-    override fun onSelectTypeEvent(type: Int, date: Calendar) {
-        when(type){
-            SelectEventDialog.Companion.EventType.ADD -> {
-                val fragment = AddPaymentFragment.Builder().setDate(date).build()
-                UiUtils.replaceFragment(parentFragmentManager, fragment, AddPaymentFragment.TAG_FRAGMENT)
-            }
-        }
-    }
 }

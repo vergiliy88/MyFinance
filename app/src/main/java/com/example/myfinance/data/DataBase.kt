@@ -6,10 +6,10 @@ import com.example.myfinance.data.dao.PaymentDAO
 import com.example.myfinance.data.dao.PaymentTypeDAO
 import com.example.myfinance.data.dao.RegularPaymentsDAO
 import com.example.myfinance.data.dao.SettingsDAO
-import com.example.myfinance.data.entities.PaymentDB
-import com.example.myfinance.data.entities.PaymentTypeDB
-import com.example.myfinance.data.entities.RegularPaymentsDB
-import com.example.myfinance.data.entities.SettingsDB
+import com.example.myfinance.data.models.PaymentDB
+import com.example.myfinance.data.models.PaymentTypeDB
+import com.example.myfinance.data.models.RegularPaymentsDB
+import com.example.myfinance.data.models.SettingsDB
 
 
 @Database(entities = [

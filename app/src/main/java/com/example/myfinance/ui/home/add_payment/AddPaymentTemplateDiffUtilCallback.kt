@@ -1,7 +1,7 @@
-package com.example.myfinance.ui.home.add_edit_payment
+package com.example.myfinance.ui.home.add_payment
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.myfinance.ui.entities.PaymentTemplate
+import com.example.myfinance.ui.models.PaymentTemplate
 
 class AddPaymentTemplateDiffUtilCallback (private val oldList :List<PaymentTemplate>,
                                           private val newList: List<PaymentTemplate> ): DiffUtil.Callback() {

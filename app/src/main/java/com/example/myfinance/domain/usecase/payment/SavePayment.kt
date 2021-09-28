@@ -15,7 +15,11 @@ class SavePayment (private val paymentRepository: PaymentRepository) {
         }
     }
 
-    suspend fun saveAll (paymentList: List<Payment>){
-        paymentRepository.savePayments(paymentList)
+    suspend fun saveAll (payments: List<Payment>){
+        paymentRepository.savePayments(payments)
+    }
+
+    suspend fun updatePayments(payments: List<Payment>) {
+        paymentRepository.updatePayments(payments)
     }
 }

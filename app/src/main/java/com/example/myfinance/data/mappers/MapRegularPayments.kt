@@ -1,8 +1,6 @@
 package com.example.myfinance.data.mappers
 
-import com.example.myfinance.data.entities.PaymentDB
-import com.example.myfinance.data.entities.RegularPaymentsDB
-import com.example.myfinance.domain.models.Payment
+import com.example.myfinance.data.models.RegularPaymentsDB
 import com.example.myfinance.domain.models.RegularPayments
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

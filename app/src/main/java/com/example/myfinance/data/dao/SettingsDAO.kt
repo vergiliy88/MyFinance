@@ -1,7 +1,7 @@
 package com.example.myfinance.data.dao
 
 import androidx.room.*
-import com.example.myfinance.data.entities.SettingsDB
+import com.example.myfinance.data.models.SettingsDB
 
 @Dao
 interface SettingsDAO {

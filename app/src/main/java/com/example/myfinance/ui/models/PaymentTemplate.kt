@@ -1,4 +1,4 @@
-package com.example.myfinance.ui.entities
+package com.example.myfinance.ui.models
 
 class PaymentTemplate {
     var comment: String? = null

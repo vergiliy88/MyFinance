@@ -1,6 +1,6 @@
 package com.example.myfinance.data.mappers
 
-import com.example.myfinance.data.entities.SettingsDB
+import com.example.myfinance.data.models.SettingsDB
 import com.example.myfinance.domain.models.Settings
 
 class MapSettings {

@@ -1,4 +1,4 @@
-package com.example.myfinance.ui.home.add_edit_payment
+package com.example.myfinance.ui.home.add_payment
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
@@ -13,26 +13,27 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myfinance.databinding.FragmentAddPaymentBinding
 import com.example.myfinance.domain.utils.Utils
 import com.example.myfinance.ui.base.BaseFragment
+import com.example.myfinance.ui.models.StatisticDate
 import java.util.*
 
-open class AddPaymentFragment protected constructor(): BaseFragment<FragmentAddPaymentBinding>(),
+open class AddPaymentFragment: BaseFragment<FragmentAddPaymentBinding>(),
     AddPaymentAdapter.SetSelectedPaymentType, AddPaymentAdapter.SetCommentAndSumValue {
     private lateinit var _viewModal: AddPaymentViewModel
     private lateinit var adapter: AddPaymentAdapter
 
-    private var selectedDate: Calendar? = null
+    private var selectedDate: StatisticDate? = null
 
-    internal constructor(date: Calendar?) : this() {
-        this.selectedDate = date
-    }
-
-    internal constructor(dialog: AddPaymentFragment, date: Calendar) : this(date)
 
     companion object {
         const val TAG_FRAGMENT = "AddPaymentFragment"
+        private const val DATA_VALUE = "date_value"
         @JvmStatic
-        fun newInstance(): AddPaymentFragment {
-            return AddPaymentFragment()
+        fun newInstance(date: StatisticDate?): AddPaymentFragment {
+            val args = Bundle()
+            args.putParcelable(DATA_VALUE, date)
+            val fragment = AddPaymentFragment()
+            fragment.arguments = args
+            return fragment
         }
     }
 
@@ -40,6 +41,11 @@ open class AddPaymentFragment protected constructor(): BaseFragment<FragmentAddP
         super.onCreate(savedInstanceState)
         _viewModal =
             ViewModelProvider(requireActivity()).get(AddPaymentViewModel::class.java)
+
+        arguments?.let {
+            selectedDate = it.getParcelable(DATA_VALUE)
+        }
+
         if (this.selectedDate == null) {
             val calendar: Calendar = Calendar.getInstance();
             _viewModal.setDateFrom(calendar.get(Calendar.YEAR),
@@ -49,12 +55,12 @@ open class AddPaymentFragment protected constructor(): BaseFragment<FragmentAddP
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH))
         } else {
-            _viewModal.setDateFrom(this.selectedDate!!.get(Calendar.YEAR),
-                          this.selectedDate!!.get(Calendar.MONTH),
-                                 this.selectedDate!!.get(Calendar.DAY_OF_MONTH))
-            _viewModal.setDateTo(this.selectedDate!!.get(Calendar.YEAR),
-                        this.selectedDate!!.get(Calendar.MONTH),
-                              this.selectedDate!!.get(Calendar.DAY_OF_MONTH))
+            _viewModal.setDateFrom(this.selectedDate!!.year ?: 0,
+                                this.selectedDate!!.month ?: 0,
+                                  this.selectedDate!!.day ?: 0)
+            _viewModal.setDateTo(this.selectedDate!!.year ?: 0,
+                                this.selectedDate!!.month ?: 0,
+                                    this.selectedDate!!.day ?: 0)
         }
         _viewModal.generateList()
     }
@@ -143,18 +149,5 @@ open class AddPaymentFragment protected constructor(): BaseFragment<FragmentAddP
 
     override fun onSetSum(position: Int, value: Double) {
         _viewModal.setSumPaymentTemplate(position, value)
-    }
-
-    open class Builder {
-        private var date: Calendar? = null
-
-        fun setDate(date: Calendar?): Builder {
-            this.date = date
-            return this
-        }
-
-        open fun build(): AddPaymentFragment {
-            return AddPaymentFragment(date)
-        }
     }
 }
