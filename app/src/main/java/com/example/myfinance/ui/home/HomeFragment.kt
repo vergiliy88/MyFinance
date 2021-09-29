@@ -18,6 +18,7 @@ import com.example.myfinance.domain.models.PaymentType
 import com.example.myfinance.domain.models.RegularPayments
 import com.example.myfinance.ui.base.BaseFragment
 import com.example.myfinance.ui.home.add_payment.AddPaymentFragment
+import com.example.myfinance.ui.home.del_payment.DelPaymentFragment
 import com.example.myfinance.utils.Constants.Companion.defaultColor
 import com.example.myfinance.utils.UiUtils
 import com.example.myfinance.ui.home.dialogs.SelectEventDialog
@@ -54,7 +55,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-//        _viewModal.subscribeOnPayments()
+
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -93,6 +94,12 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
                             UiUtils.replaceFragment(fm,
                                 fragment,
                                 ViewEditPaymentFragment.TAG_FRAGMENT)
+                        }
+                        SelectEventDialog.Companion.EventType.DEL -> {
+                            val fragment = DelPaymentFragment.newInstance(date)
+                            UiUtils.replaceFragment(fm,
+                                fragment,
+                                DelPaymentFragment.TAG_FRAGMENT)
                         }
                     }
                 }

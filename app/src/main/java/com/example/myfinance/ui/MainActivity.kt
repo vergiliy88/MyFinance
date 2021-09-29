@@ -20,6 +20,10 @@ import com.example.myfinance.ui.type_payment.PaymentTypeViewModel
 import com.example.myfinance.utils.SettingsState
 import com.example.myfinance.utils.UiUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.text.SpannableString
+
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -92,5 +96,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadFragment(fragment: Fragment) {
         UiUtils.replaceFragment(supportFragmentManager, fragment)
+    }
+
+    fun setToolbarTitle(title: SpannableString?) {
+        toolbar?.title = title
     }
 }

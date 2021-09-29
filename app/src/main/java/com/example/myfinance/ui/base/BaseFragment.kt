@@ -6,6 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.myfinance.ui.MainActivity
+
+import android.app.Activity
+import com.example.myfinance.utils.UiUtils
 
 
 open class BaseFragment<VB>: Fragment() {
@@ -25,5 +29,14 @@ open class BaseFragment<VB>: Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    open fun setToolBarTitle(
+        value: String?,
+        activity: Activity?
+    ) {
+        if (activity is MainActivity) {
+            activity.setToolbarTitle(UiUtils.setBoldValueInBKT(value))
+        }
     }
 }

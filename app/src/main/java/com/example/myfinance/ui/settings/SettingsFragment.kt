@@ -3,6 +3,7 @@ package com.example.myfinance.ui.settings
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.myfinance.databinding.FragmentSettingsBinding
@@ -40,6 +41,10 @@ class SettingsFragment: BaseFragment<FragmentSettingsBinding>() {
         val enabledComments = binding.enabledComments
         val isReplayPayments = binding.isReplayPayments
         val paymentReceived = binding.paymentReceived
+
+        //TODO TEMP
+        isReplayPayments.visibility = GONE
+
 
         _viewModal.settings.observe(viewLifecycleOwner, {settings ->
             settings.hourlyPayment?.let{

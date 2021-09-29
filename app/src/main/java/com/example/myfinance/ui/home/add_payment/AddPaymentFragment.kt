@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myfinance.R
 import com.example.myfinance.databinding.FragmentAddPaymentBinding
 import com.example.myfinance.domain.utils.Utils
 import com.example.myfinance.ui.base.BaseFragment
@@ -80,6 +81,7 @@ open class AddPaymentFragment: BaseFragment<FragmentAddPaymentBinding>(),
         val paymentTemplateList: RecyclerView = binding.paymentTemplateList
         val buttonSavePayment = binding.buttonSavePayment
 
+        setToolBarTitle(resources.getString(R.string.button_add_payment), activity)
 
         buttonDateFrom.setOnClickListener {
             val dpd = DatePickerDialog(requireContext(), { view, year, monthOfYear, dayOfMonth ->

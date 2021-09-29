@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myfinance.R
 import com.example.myfinance.databinding.FragmentViewEditPaymentBinding
 import com.example.myfinance.domain.utils.Utils
 import com.example.myfinance.ui.base.BaseFragment
@@ -71,12 +72,17 @@ open class ViewEditPaymentFragment: BaseFragment<FragmentViewEditPaymentBinding>
         val sumValue = binding.valueSum
         val sumLabel = binding.labelSum
 
+        buttonSavePayment.visibility = GONE
+        sumValue.visibility = VISIBLE
+        sumLabel.visibility = VISIBLE
+
+        setToolBarTitle(resources.getString(R.string.button_view_payment), activity)
+
         if (this.isEdit) {
             buttonSavePayment.visibility = VISIBLE
-        } else {
-            buttonSavePayment.visibility = GONE
             sumValue.visibility = GONE
             sumLabel.visibility = GONE
+            setToolBarTitle(resources.getString(R.string.button_edit_payment), activity)
         }
 
         selectedDate?.let { calendare ->

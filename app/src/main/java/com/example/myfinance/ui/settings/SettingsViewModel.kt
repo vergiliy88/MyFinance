@@ -8,6 +8,7 @@ import com.example.myfinance.domain.models.Settings
 import com.example.myfinance.domain.usecase.settings.GetSettings
 import com.example.myfinance.domain.usecase.settings.SaveSettings
 import com.example.myfinance.ui.base.BaseViewModal
+import com.example.myfinance.utils.SettingsState
 import kotlinx.coroutines.launch
 
 
@@ -30,6 +31,10 @@ class SettingsViewModel: BaseViewModal() {
     fun setSettings(data: Settings){
         viewModelScope.launch {
             saveSettingsUseCase.execute(data)
+            SettingsState.enabledComments = data.enabledComments ?: false
+            SettingsState.hourlyPayment = data.hourlyPayment ?: false
+            SettingsState.isReplayPayments = data.isReplayPayments ?: false
+            SettingsState.paymentReceived = data.paymentReceived ?: false
             _settings.value = data
         }
     }

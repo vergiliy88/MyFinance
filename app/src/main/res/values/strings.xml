@@ -31,7 +31,7 @@
     <string name="label_hourly_payment">Почасовая оплата</string>
     <string name="label_enabled_comments">Вкл. комментарии к выплатам</string>
     <string name="label_replay_payments">Повторять выплаты</string>
-    <string name="label_payments_received">Показвать полученные выплаты</string>
+    <string name="label_payments_received">Возможность уточнять выплаты</string>
 
     <string name="date_from">С:</string>
     <string name="date_to">По:</string>
@@ -42,7 +42,7 @@
     <string name="label_total_salary">Зарплата: </string>
     <string name="label_total_payment">Доп. выплаты: </string>
     <string name="label_total">Итого: </string>
-    <string name="button_add_payment">Добавить</string>
+    <string name="button_add">Добавить</string>
 
     <string name="material_calendar_monday">Пн</string>
     <string name="material_calendar_tuesday">Вт</string>
@@ -72,6 +72,7 @@
     <string name="material_calendar_negative_button">Отмена</string>
     <string name="button_save_payment">Сохранить</string>
 
+    <string name="button_add_payment">ДОбавление платежей</string>
     <string name="button_view_payment">Просмотр платежей</string>
     <string name="button_edit_payment">Редактрование платежей</string>
     <string name="button_del_payment">Удаление платжей</string>

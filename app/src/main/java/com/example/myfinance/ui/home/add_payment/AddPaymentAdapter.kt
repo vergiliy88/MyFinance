@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.View.GONE
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
@@ -14,6 +15,7 @@ import com.example.myfinance.R
 import com.example.myfinance.ui.base.BaseAdapter
 import com.example.myfinance.ui.base.BaseViewHolder
 import com.example.myfinance.ui.models.PaymentTemplate
+import com.example.myfinance.utils.SettingsState
 import java.util.*
 
 class AddPaymentAdapter: BaseAdapter<PaymentTemplate, AddPaymentAdapter.Vh>(
@@ -65,9 +67,16 @@ class AddPaymentAdapter: BaseAdapter<PaymentTemplate, AddPaymentAdapter.Vh>(
                 realSum?.setText(realSumValue.toString())
                 isSelectedType?.setChecked(item?.isSelected ?: false)
 
+                if(!SettingsState.enabledComments) {
+                    comment?.visibility = GONE
+                }
+
+                if(!SettingsState.paymentReceived) {
+                    realSum?.visibility = GONE
+                }
+
                 isSelectedType?.setOnCheckedChangeListener{ view, isChecked  ->
                     setSelectedPaymentType.onSelectPaymentType(adapterPosition)
-//                    item?.isSelected = isChecked
                 }
                 comment?.addTextChangedListener(object : TextWatcher {
                     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {

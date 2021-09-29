@@ -65,4 +65,12 @@ class PaymentRepositoryImpl: PaymentRepository {
     override suspend fun delPaymentByTypeId(paymentTypeId: Long): Boolean {
         TODO("Not yet implemented")
     }
+
+    override suspend fun delPaymentsByIds(ids: List<Long>): Boolean {
+        var result: Boolean
+        _db.deleteByIds(ids).apply {
+            result = this > 0
+        }
+        return result
+    }
 }

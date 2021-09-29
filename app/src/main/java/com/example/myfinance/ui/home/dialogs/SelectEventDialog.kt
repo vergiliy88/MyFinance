@@ -10,6 +10,7 @@ import androidx.annotation.IntDef
 import com.example.myfinance.databinding.DialogSelectEventTypeBinding
 import com.example.myfinance.ui.base.BaseDialog
 import com.example.myfinance.ui.models.StatisticDate
+import com.example.myfinance.utils.SettingsState
 import java.util.*
 
 open class SelectEventDialog constructor(): BaseDialog<DialogSelectEventTypeBinding>() {
@@ -63,6 +64,13 @@ open class SelectEventDialog constructor(): BaseDialog<DialogSelectEventTypeBind
         val buttonEditPayment: Button = binding.buttonEditPayment
         val buttonDelPayment: Button = binding.buttonDelPayment
         val buttonAddPayment: Button = binding.buttonAddPayment
+
+        if(SettingsState.enabledComments || SettingsState.paymentReceived) {
+            buttonEditPayment.visibility = View.VISIBLE
+        } else {
+            buttonEditPayment.visibility = View.GONE
+        }
+
 
         buttonAddPayment.setOnClickListener {
             selectedDate?.let {

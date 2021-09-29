@@ -14,6 +14,7 @@ import com.example.myfinance.R
 import com.example.myfinance.domain.models.PaymentJoinPaymentType
 import com.example.myfinance.ui.base.BaseAdapter
 import com.example.myfinance.ui.base.BaseViewHolder
+import com.example.myfinance.utils.SettingsState
 import java.util.*
 
 class ViewEditPaymentAdapter : BaseAdapter<PaymentJoinPaymentType, ViewEditPaymentAdapter.Vh>(
@@ -67,6 +68,14 @@ class ViewEditPaymentAdapter : BaseAdapter<PaymentJoinPaymentType, ViewEditPayme
                 val realSumValue = item?.realSum ?: ""
                 realSum?.setText(realSumValue.toString())
                 isSelectedType?.visibility = GONE
+
+                if(!SettingsState.enabledComments) {
+                    comment?.visibility = GONE
+                }
+
+                if(!SettingsState.paymentReceived) {
+                    realSum?.visibility = GONE
+                }
 
                 if (!isEditable) {
                     comment?.isEnabled = false

@@ -17,4 +17,5 @@ interface PaymentRepository {
     suspend fun updatePayments(payments: List<Payment>)
     suspend fun delPayment(payment: Payment): Boolean
     suspend fun delPaymentByTypeId(paymentTypeId: Long): Boolean
+    suspend fun delPaymentsByIds(ids: List<Long>): Boolean
 }

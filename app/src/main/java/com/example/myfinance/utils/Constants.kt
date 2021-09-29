@@ -7,5 +7,9 @@ class Constants {
         val COLORS = arrayOf("#b33ed6", "#120ae9", "#0980e8", "#09e8e8", "#09e8a2", "#09e830", "#e8c809", "#e87409", "#e80d09", "#224a4a")
         const val DEFAULT_SUM = 0.0
         const val DEFAULT_DAY = 1
+
+        const val OPEN_BKT = "("
+        const val CLOSE_BKT = ")"
+        const val DEFAULT_RESULT_CODE = -1
     }
 }

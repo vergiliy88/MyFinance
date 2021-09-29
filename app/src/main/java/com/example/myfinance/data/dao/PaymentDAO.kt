@@ -58,8 +58,8 @@ interface PaymentDAO {
     @Query("DELETE FROM PaymentDB WHERE id = :paymentId;")
     suspend fun deleteById(paymentId: Long): Int
 
-    @Query("DELETE FROM PaymentDB WHERE id IN (:paymentId);")
-    suspend fun deleteByIds(paymentId: List<Long>): Int
+    @Query("DELETE FROM PaymentDB WHERE id IN (:paymentIds);")
+    suspend fun deleteByIds(paymentIds: List<Long>): Int
 
     @Query("DELETE FROM PaymentDB WHERE paymentType = :paymentTypeId;")
     suspend fun deletePaymentByPaymentTypeId(paymentTypeId: Long): Int

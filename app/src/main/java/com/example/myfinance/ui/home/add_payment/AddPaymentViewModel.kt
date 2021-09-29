@@ -110,6 +110,7 @@ class AddPaymentViewModel: BaseViewModal() {
     }
 
     fun generateList() {
+        paymentTemplate.clear()
         viewModelScope.launch {
             val listPaymentTypes = getPaymentTypesUseCase.getAll()
             val listPaymentTemplate: MutableList<PaymentTemplate> = mutableListOf()
