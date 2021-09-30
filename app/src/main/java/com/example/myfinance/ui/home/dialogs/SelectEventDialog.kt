@@ -9,23 +9,22 @@ import android.widget.*
 import androidx.annotation.IntDef
 import com.example.myfinance.databinding.DialogSelectEventTypeBinding
 import com.example.myfinance.ui.base.BaseDialog
-import com.example.myfinance.ui.models.StatisticDate
+import com.example.myfinance.ui.models.CalendarDate
 import com.example.myfinance.utils.SettingsState
-import java.util.*
 
 open class SelectEventDialog constructor(): BaseDialog<DialogSelectEventTypeBinding>() {
     private var listener: SelectTypeEvent? = null
-    private var selectedDate: StatisticDate? = null
+    private var selectedDate: CalendarDate? = null
 
     internal constructor(
         listener: SelectTypeEvent?,
-        date: StatisticDate?
+        date: CalendarDate?
     ) : this() {
         this.listener = listener
         this.selectedDate = date
     }
 
-    internal constructor(dialog: SelectEventDialog, date: StatisticDate) :
+    internal constructor(dialog: SelectEventDialog, date: CalendarDate) :
             this(dialog.listener, date)
 
 
@@ -104,19 +103,19 @@ open class SelectEventDialog constructor(): BaseDialog<DialogSelectEventTypeBind
     }
 
     interface SelectTypeEvent {
-        fun onSelectTypeEvent(type: Int, date: StatisticDate)
+        fun onSelectTypeEvent(type: Int, date: CalendarDate)
     }
 
     open class Builder {
         private var listener: SelectTypeEvent? = null
-        private var date: StatisticDate? = null
+        private var date: CalendarDate? = null
 
         fun setListener(listener: SelectTypeEvent): Builder {
             this.listener = listener
             return this
         }
 
-        fun setDate(date: StatisticDate): Builder {
+        fun setDate(date: CalendarDate): Builder {
             this.date = date
             return this
         }

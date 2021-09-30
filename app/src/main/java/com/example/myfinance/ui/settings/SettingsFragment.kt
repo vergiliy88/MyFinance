@@ -41,9 +41,14 @@ class SettingsFragment: BaseFragment<FragmentSettingsBinding>() {
         val enabledComments = binding.enabledComments
         val isReplayPayments = binding.isReplayPayments
         val paymentReceived = binding.paymentReceived
+        val isReplayPaymentsLabel = binding.labelIsReplayPayments
+        val labelIsHourlyPayment = binding.labelIsHourlyPayment
 
         //TODO TEMP
         isReplayPayments.visibility = GONE
+        labelIsHourlyPayment.visibility = GONE
+        isReplayPaymentsLabel.visibility = GONE
+        hourlyPayment.visibility = GONE
 
 
         _viewModal.settings.observe(viewLifecycleOwner, {settings ->

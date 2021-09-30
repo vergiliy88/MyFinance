@@ -16,9 +16,11 @@
             style="@style/LabelList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/space_normal"
             android:text="@string/date_from"
-            app:layout_constraintBottom_toBottomOf="@+id/button_date_from"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="@dimen/space_normal"
+            app:layout_constraintEnd_toEndOf="@+id/button_date_from"
+            app:layout_constraintStart_toStartOf="@+id/button_date_from"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
@@ -27,30 +29,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_double"
-            android:text="30.30.2020"
-            app:layout_constraintStart_toEndOf="@id/label_date_from"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label_date_from"
+            tools:text="30.30.2020" />
 
         <TextView
             android:id="@+id/label_date_to"
             style="@style/LabelList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/space_double"
+            android:layout_marginBottom="@dimen/space_normal"
+            android:layout_marginEnd="@dimen/space_normal"
             android:text="@string/date_to"
-            app:layout_constraintBottom_toBottomOf="@+id/button_date_to"
-            app:layout_constraintEnd_toStartOf="@id/button_date_to"
+            app:layout_constraintEnd_toEndOf="@+id/button_date_to"
+            app:layout_constraintStart_toStartOf="@+id/button_date_to"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <Button
             android:id="@+id/button_date_to"
             style="@style/ButtonStatistic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/space_double"
-            android:text="30.30.2020"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="@dimen/space_double"
+            android:text=""
+            app:layout_constraintBottom_toBottomOf="@+id/button_date_from"
+            app:layout_constraintStart_toEndOf="@+id/button_date_from"
+            app:layout_constraintTop_toTopOf="@+id/button_date_from"
+            tools:text="30.30.2020" />
+
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/chart"
@@ -60,6 +68,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_date_from" />
+            app:layout_constraintTop_toBottomOf="@+id/button_date_to" />
+
+        <Button
+            android:id="@+id/button_apply_filter"
+            style="@style/ButtonStatistic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/space_normal"
+            android:text="@android:string/yes"
+            app:layout_constraintBottom_toBottomOf="@+id/button_date_to"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/button_date_from"
+            tools:ignore="ButtonCase" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

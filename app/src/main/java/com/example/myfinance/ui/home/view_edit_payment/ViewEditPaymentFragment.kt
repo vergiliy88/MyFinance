@@ -13,21 +13,21 @@ import com.example.myfinance.R
 import com.example.myfinance.databinding.FragmentViewEditPaymentBinding
 import com.example.myfinance.domain.utils.Utils
 import com.example.myfinance.ui.base.BaseFragment
-import com.example.myfinance.ui.models.StatisticDate
+import com.example.myfinance.ui.models.CalendarDate
 
 open class ViewEditPaymentFragment: BaseFragment<FragmentViewEditPaymentBinding>(),
      ViewEditPaymentAdapter.SetCommentAndSumValue {
     private lateinit var _viewModal: ViewEditPaymentViewModel
     private lateinit var adapter: ViewEditPaymentAdapter
     private var isEdit: Boolean = false
-    private lateinit var selectedDate: StatisticDate
+    private lateinit var selectedDate: CalendarDate
 
     companion object {
         const val TAG_FRAGMENT = "ViewEditPaymentFragment"
         private const val DATA_VALUE = "date_value"
         private const val IS_EDITABLE_VALUE = "is_editable_value"
         @JvmStatic
-        fun newInstance(date: StatisticDate, isEdit: Boolean): ViewEditPaymentFragment {
+        fun newInstance(date: CalendarDate, isEdit: Boolean): ViewEditPaymentFragment {
             val args = Bundle()
             args.putParcelable(DATA_VALUE, date)
             args.putBoolean(IS_EDITABLE_VALUE, isEdit)
@@ -43,7 +43,7 @@ open class ViewEditPaymentFragment: BaseFragment<FragmentViewEditPaymentBinding>
             ViewModelProvider(requireActivity()).get(ViewEditPaymentViewModel::class.java)
 
         arguments?.let {
-            selectedDate = it.getParcelable(DATA_VALUE) ?: StatisticDate()
+            selectedDate = it.getParcelable(DATA_VALUE) ?: CalendarDate()
             isEdit = it.getBoolean(IS_EDITABLE_VALUE)
         }
         if (savedInstanceState == null) {

@@ -12,19 +12,19 @@ import com.example.myfinance.R
 import com.example.myfinance.databinding.FragmentViewEditPaymentBinding
 import com.example.myfinance.domain.utils.Utils
 import com.example.myfinance.ui.base.BaseFragment
-import com.example.myfinance.ui.models.StatisticDate
+import com.example.myfinance.ui.models.CalendarDate
 
 class DelPaymentFragment : BaseFragment<FragmentViewEditPaymentBinding>() {
     private lateinit var _viewModal: DelPaymentViewModal
     private lateinit var adapter: DelPaymentAdapter
     private var isEdit: Boolean = false
-    private lateinit var selectedDate: StatisticDate
+    private lateinit var selectedDate: CalendarDate
 
     companion object {
         const val TAG_FRAGMENT = "DelPaymentFragment"
         private const val DATA_VALUE = "date_value"
         @JvmStatic
-        fun newInstance(date: StatisticDate): DelPaymentFragment {
+        fun newInstance(date: CalendarDate): DelPaymentFragment {
             val args = Bundle()
             args.putParcelable(DATA_VALUE, date)
             val fragment = DelPaymentFragment()
@@ -39,7 +39,7 @@ class DelPaymentFragment : BaseFragment<FragmentViewEditPaymentBinding>() {
             ViewModelProvider(requireActivity()).get(DelPaymentViewModal::class.java)
 
         arguments?.let {
-            selectedDate = it.getParcelable(DATA_VALUE) ?: StatisticDate()
+            selectedDate = it.getParcelable(DATA_VALUE) ?: CalendarDate()
         }
         if (savedInstanceState == null) {
             selectedDate?.let {

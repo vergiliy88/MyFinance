@@ -3,6 +3,8 @@ package com.example.myfinance.data.dao
 import androidx.room.*
 import com.example.myfinance.data.models.PaymentDB
 import com.example.myfinance.domain.models.PaymentJoinPaymentType
+import com.example.myfinance.domain.models.PaymentStatistic
+import com.example.myfinance.domain.models.StatisticDate
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -18,6 +20,15 @@ interface PaymentDAO {
 
     @Query("SELECT * FROM PaymentDB WHERE strftime('%m',date) = :month AND strftime('%Y',date) = :year;")
     fun getByDateFlow(month: String, year: String): Flow<List<PaymentDB>>
+
+    @Query("""SELECT 
+            sum(py.realSum) as realSum,
+            pt.name as paymentTypeName,
+            pt.color as paymentColor
+            FROM PaymentDB AS py INNER JOIN PaymentTypeDB AS pt ON py.paymentType = pt.id
+            WHERE py.date BETWEEN :dateFrom and :dateTo
+            GROUP BY py.paymentType;""")
+    fun getBetweenDateFlow(dateFrom: String, dateTo: String): Flow<List<PaymentStatistic>>
 
     @Query("SELECT * FROM PaymentDB WHERE strftime('%m',date) = :month AND strftime('%Y',date) = :year;")
     suspend fun getByDate(month: String, year: String): List<PaymentDB>

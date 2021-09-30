@@ -76,6 +76,7 @@
     <string name="button_view_payment">Просмотр платежей</string>
     <string name="button_edit_payment">Редактрование платежей</string>
     <string name="button_del_payment">Удаление платжей</string>
+    <string name="button_apply_filter">Применить фильтр</string>
 
     <string name="label_date">Дата</string>
 </resources>

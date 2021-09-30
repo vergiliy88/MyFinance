@@ -2,6 +2,8 @@ package com.example.myfinance.domain.usecase.payment
 
 import com.example.myfinance.domain.models.Payment
 import com.example.myfinance.domain.models.PaymentJoinPaymentType
+import com.example.myfinance.domain.models.PaymentStatistic
+import com.example.myfinance.domain.models.StatisticDate
 import com.example.myfinance.domain.repositories.PaymentRepository
 import com.example.myfinance.domain.utils.Utils
 import kotlinx.coroutines.flow.Flow
@@ -14,6 +16,17 @@ class GetPayment(private val paymentRepository: PaymentRepository) {
     fun getByDateFlow(month: Int, year: Int): Flow<List<Payment>> {
         val monthStr = Utils.convertMonthFromCal(month)
         return paymentRepository.getPaymentsByDateFlow(monthStr, year.toString())
+    }
+
+    fun getBetweenDateFlow(month: Int, year: Int): Flow<List<Payment>> {
+        val monthStr = Utils.convertMonthFromCal(month)
+        return paymentRepository.getPaymentsByDateFlow(monthStr, year.toString())
+    }
+
+    fun getBetweenDateFlow(dateFrom: StatisticDate, dateTo: StatisticDate): Flow<List<PaymentStatistic>> {
+        val dateFromStr = Utils.convertObjectDateToString(dateFrom)
+        val dateToStr = Utils.convertObjectDateToString(dateTo)
+        return paymentRepository.getBetweenDateFlow(dateFromStr, dateToStr)
     }
 
     suspend fun getByDate(month: Int, year: Int): List<Payment> {

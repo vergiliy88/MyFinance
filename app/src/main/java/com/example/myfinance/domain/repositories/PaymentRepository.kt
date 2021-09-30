@@ -2,11 +2,13 @@ package com.example.myfinance.domain.repositories
 
 import com.example.myfinance.domain.models.Payment
 import com.example.myfinance.domain.models.PaymentJoinPaymentType
+import com.example.myfinance.domain.models.PaymentStatistic
 import kotlinx.coroutines.flow.Flow
 
 interface PaymentRepository {
     fun getPaymentsFlow(): Flow<List<Payment>>
     fun getPaymentsByDateFlow(month: String, year: String): Flow<List<Payment>>
+    fun getBetweenDateFlow(dateFrom: String, dateTo: String): Flow<List<PaymentStatistic>>
     suspend fun getPaymentsByDate(month: String, year: String):List<Payment>
     suspend fun getPayment(id: Long): Payment
     suspend fun getAllPayments(): List<Payment>

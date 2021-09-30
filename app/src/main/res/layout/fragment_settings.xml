@@ -19,7 +19,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/label_is_hourly_payment"
             style="@style/LabelList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
             app:layout_constraintTop_toBottomOf="@+id/is_hourly_payment" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/label_enabled_comments"
             style="@style/LabelList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
             app:layout_constraintTop_toBottomOf="@+id/enabled_comments" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/label_is_replay_payments"
             style="@style/LabelList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
             app:layout_constraintTop_toBottomOf="@+id/is_replay_payments" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/label_payment_received"
             style="@style/LabelList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

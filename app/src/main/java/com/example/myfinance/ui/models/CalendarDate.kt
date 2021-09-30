@@ -3,7 +3,7 @@ package com.example.myfinance.ui.models
 import android.os.Parcel
 import android.os.Parcelable
 
-class StatisticDate() : Parcelable {
+class CalendarDate() : Parcelable {
     var year: Int? = null
     var month: Int? = null
     var day: Int?  = null
@@ -24,12 +24,12 @@ class StatisticDate() : Parcelable {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<StatisticDate> {
-        override fun createFromParcel(parcel: Parcel): StatisticDate {
-            return StatisticDate(parcel)
+    companion object CREATOR : Parcelable.Creator<CalendarDate> {
+        override fun createFromParcel(parcel: Parcel): CalendarDate {
+            return CalendarDate(parcel)
         }
 
-        override fun newArray(size: Int): Array<StatisticDate?> {
+        override fun newArray(size: Int): Array<CalendarDate?> {
             return arrayOfNulls(size)
         }
     }

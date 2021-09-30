@@ -23,7 +23,7 @@ import com.example.myfinance.utils.Constants.Companion.defaultColor
 import com.example.myfinance.utils.UiUtils
 import com.example.myfinance.ui.home.dialogs.SelectEventDialog
 import com.example.myfinance.ui.home.view_edit_payment.ViewEditPaymentFragment
-import com.example.myfinance.ui.models.StatisticDate
+import com.example.myfinance.ui.models.CalendarDate
 
 
 class HomeFragment: BaseFragment<FragmentHomeBinding>() {
@@ -75,7 +75,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
 
         calendarView.setOnDayClickListener { eventDay ->
             val listener = (object: SelectEventDialog.SelectTypeEvent {
-                override fun onSelectTypeEvent(type: Int, date: StatisticDate) {
+                override fun onSelectTypeEvent(type: Int, date: CalendarDate) {
                     when(type){
                         SelectEventDialog.Companion.EventType.ADD -> {
                             val fragment = AddPaymentFragment.newInstance(date)
@@ -104,7 +104,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
                     }
                 }
             })
-            val date  = StatisticDate()
+            val date  = CalendarDate()
             date.year = eventDay.calendar.get(Calendar.YEAR)
             date.month = eventDay.calendar.get(Calendar.MONTH)
             date.day = eventDay.calendar.get(Calendar.DAY_OF_MONTH)

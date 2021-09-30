@@ -14,7 +14,7 @@ import com.example.myfinance.R
 import com.example.myfinance.databinding.FragmentAddPaymentBinding
 import com.example.myfinance.domain.utils.Utils
 import com.example.myfinance.ui.base.BaseFragment
-import com.example.myfinance.ui.models.StatisticDate
+import com.example.myfinance.ui.models.CalendarDate
 import java.util.*
 
 open class AddPaymentFragment: BaseFragment<FragmentAddPaymentBinding>(),
@@ -22,14 +22,14 @@ open class AddPaymentFragment: BaseFragment<FragmentAddPaymentBinding>(),
     private lateinit var _viewModal: AddPaymentViewModel
     private lateinit var adapter: AddPaymentAdapter
 
-    private var selectedDate: StatisticDate? = null
+    private var selectedDate: CalendarDate? = null
 
 
     companion object {
         const val TAG_FRAGMENT = "AddPaymentFragment"
         private const val DATA_VALUE = "date_value"
         @JvmStatic
-        fun newInstance(date: StatisticDate?): AddPaymentFragment {
+        fun newInstance(date: CalendarDate?): AddPaymentFragment {
             val args = Bundle()
             args.putParcelable(DATA_VALUE, date)
             val fragment = AddPaymentFragment()

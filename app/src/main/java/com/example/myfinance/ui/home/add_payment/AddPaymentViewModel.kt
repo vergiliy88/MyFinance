@@ -12,7 +12,7 @@ import com.example.myfinance.domain.usecase.payment_types.GetPaymentTypes
 import com.example.myfinance.domain.utils.Utils.Companion.convertMonthFromCal
 import com.example.myfinance.ui.base.BaseViewModal
 import com.example.myfinance.ui.models.PaymentTemplate
-import com.example.myfinance.ui.models.StatisticDate
+import com.example.myfinance.ui.models.CalendarDate
 import com.example.myfinance.utils.Utils
 import kotlinx.coroutines.*
 import java.util.*
@@ -28,28 +28,28 @@ class AddPaymentViewModel: BaseViewModal() {
     val paymentTypes: LiveData<List<PaymentType>> = _paymentTypes
     var paymentTemplate: MutableList<PaymentTemplate> = mutableListOf()
 
-    private val _dateFrom = MutableLiveData<StatisticDate>().apply {
-        val defaultDateFrom = StatisticDate()
+    private val _dateFrom = MutableLiveData<CalendarDate>().apply {
+        val defaultDateFrom = CalendarDate()
         defaultDateFrom.year = calendar.get(Calendar.YEAR)
         defaultDateFrom.month = calendar.get(Calendar.MONTH)
         defaultDateFrom.day = calendar.get(Calendar.DAY_OF_MONTH)
         value = defaultDateFrom
     }
 
-    val dateFrom: LiveData<StatisticDate> = _dateFrom
+    val dateFrom: LiveData<CalendarDate> = _dateFrom
 
-    private val _dateTo = MutableLiveData<StatisticDate>().apply {
-        val defaultDateFrom = StatisticDate()
+    private val _dateTo = MutableLiveData<CalendarDate>().apply {
+        val defaultDateFrom = CalendarDate()
         defaultDateFrom.year = calendar.get(Calendar.YEAR)
         defaultDateFrom.month = calendar.get(Calendar.MONTH)
         defaultDateFrom.day = calendar.get(Calendar.DAY_OF_MONTH)
         value = defaultDateFrom
     }
 
-    val dateTo: LiveData<StatisticDate> = _dateTo
+    val dateTo: LiveData<CalendarDate> = _dateTo
 
     fun setDateFrom(year: Int, month: Int, day: Int) {
-        val newDate= StatisticDate()
+        val newDate= CalendarDate()
         newDate.year = year
         newDate.month = month
         newDate.day = day
@@ -57,7 +57,7 @@ class AddPaymentViewModel: BaseViewModal() {
     }
 
     fun setDateTo(year: Int, month: Int, day: Int) {
-        val newDate = StatisticDate()
+        val newDate = CalendarDate()
         newDate.year = year
         newDate.month = month
         newDate.day = day

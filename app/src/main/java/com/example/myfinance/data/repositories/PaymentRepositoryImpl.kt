@@ -4,6 +4,7 @@ import com.example.myfinance.App
 import com.example.myfinance.data.mappers.MapPayment
 import com.example.myfinance.domain.models.Payment
 import com.example.myfinance.domain.models.PaymentJoinPaymentType
+import com.example.myfinance.domain.models.PaymentStatistic
 import com.example.myfinance.domain.repositories.PaymentRepository
 import kotlinx.coroutines.flow.Flow
 
@@ -16,6 +17,13 @@ class PaymentRepositoryImpl: PaymentRepository {
 
     override fun getPaymentsByDateFlow(month: String, year: String): Flow<List<Payment>> {
         return MapPayment.mapFromDbListFlow(_db.getByDateFlow(month, year))
+    }
+
+    override fun getBetweenDateFlow(
+        dateFrom: String,
+        dateTo: String
+    ): Flow<List<PaymentStatistic>> {
+        return _db.getBetweenDateFlow(dateFrom, dateTo)
     }
 
     override suspend fun getPaymentsByDate(month: String, year: String): List<Payment> {

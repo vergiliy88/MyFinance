@@ -12,7 +12,7 @@ import com.example.myfinance.domain.usecase.payment.GetPayment
 import com.example.myfinance.domain.usecase.payment_types.GetPaymentTypes
 import com.example.myfinance.domain.usecase.regular_payments.GetRegularPayments
 import com.example.myfinance.ui.base.BaseViewModal
-import com.example.myfinance.ui.models.StatisticDate
+import com.example.myfinance.ui.models.CalendarDate
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
@@ -23,14 +23,14 @@ import java.util.*
 @ExperimentalCoroutinesApi
 class HomeViewModel  : BaseViewModal() {
     private val calendar: Calendar = Calendar.getInstance();
-    private val date = StatisticDate()
+    private val date = CalendarDate()
     private var job: Job? = null
 
     private val getPaymentUseCase = GetPayment(PaymentRepositoryImpl())
     private val getRegularPaymentsUseCase = GetRegularPayments(RegularPaymentsRepositoryImpl())
     private val getPaymentTypesUseCase = GetPaymentTypes(PaymentTypesRepositoryImpl())
 
-    private val _currentDate = MutableLiveData<StatisticDate>().apply {
+    private val _currentDate = MutableLiveData<CalendarDate>().apply {
         date.month = calendar.get(Calendar.MONTH)
         date.year = calendar.get(Calendar.YEAR)
         value = date
@@ -44,7 +44,7 @@ class HomeViewModel  : BaseViewModal() {
         value = true
     }
 
-    private val currentDate: LiveData<StatisticDate> = _currentDate
+    private val currentDate: LiveData<CalendarDate> = _currentDate
 
     val regularPayments: LiveData<RegularPayments> = getRegularPaymentsUseCase.getAllFlow().asLiveData()
     var paymentTypes: LiveData<List<PaymentType>> = getPaymentTypesUseCase.getAllFlow().asLiveData()
