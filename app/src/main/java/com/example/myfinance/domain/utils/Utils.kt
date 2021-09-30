@@ -12,7 +12,9 @@ class Utils {
         fun convertObjectDateToString(date: StatisticDate): String {
             var monthSt = (date.month?.plus(1)).toString()
             monthSt = if(monthSt.length < 2) "0${monthSt}" else monthSt
-            return "${date.year!!}-${monthSt}-${date.day!!}"
+            var dayStr = date.day.toString()
+            dayStr = if(dayStr.length < 2) "0${dayStr}" else dayStr
+            return "${date.year!!}-${monthSt}-${dayStr}"
         }
     }
 }

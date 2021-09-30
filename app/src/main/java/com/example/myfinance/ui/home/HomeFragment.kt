@@ -16,6 +16,8 @@ import com.example.myfinance.R
 import com.example.myfinance.domain.models.Payment
 import com.example.myfinance.domain.models.PaymentType
 import com.example.myfinance.domain.models.RegularPayments
+import com.example.myfinance.domain.models.StatisticDate
+import com.example.myfinance.domain.utils.Utils
 import com.example.myfinance.ui.base.BaseFragment
 import com.example.myfinance.ui.home.add_payment.AddPaymentFragment
 import com.example.myfinance.ui.home.del_payment.DelPaymentFragment
@@ -24,6 +26,7 @@ import com.example.myfinance.utils.UiUtils
 import com.example.myfinance.ui.home.dialogs.SelectEventDialog
 import com.example.myfinance.ui.home.view_edit_payment.ViewEditPaymentFragment
 import com.example.myfinance.ui.models.CalendarDate
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 
 class HomeFragment: BaseFragment<FragmentHomeBinding>() {
@@ -49,6 +52,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
 
     }
 
+    @ExperimentalCoroutinesApi
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -108,7 +112,21 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
             date.year = eventDay.calendar.get(Calendar.YEAR)
             date.month = eventDay.calendar.get(Calendar.MONTH)
             date.day = eventDay.calendar.get(Calendar.DAY_OF_MONTH)
-            val dialog = SelectEventDialog.Builder().setDate(date).setListener(listener).build()
+            val list = _viewModal.payments.value
+            var havePayments = false
+            val dateStr = Utils.convertObjectDateToString(StatisticDate(date.year, date.month, date.day))
+            if (list != null) {
+                for (item in list) {
+                    if (item.date == dateStr) {
+                        havePayments = true
+                    }
+                }
+            }
+            val dialog = SelectEventDialog.Builder()
+                .setDate(date)
+                .setListener(listener)
+                .setIsHavePayments(havePayments)
+                .build()
             dialog.show(parentFragmentManager, SelectEventDialog.TAG)
         }
 

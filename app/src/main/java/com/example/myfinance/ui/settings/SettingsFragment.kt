@@ -37,57 +37,57 @@ class SettingsFragment: BaseFragment<FragmentSettingsBinding>() {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val hourlyPayment = binding.isHourlyPayment
-        val enabledComments = binding.enabledComments
-        val isReplayPayments = binding.isReplayPayments
-        val paymentReceived = binding.paymentReceived
-        val isReplayPaymentsLabel = binding.labelIsReplayPayments
+        val switchHourlyPayment = binding.isHourlyPayment
+        val switchEnabledComments = binding.enabledComments
+        val switchIsReplayPayments = binding.isReplayPayments
+        val switchPaymentReceived = binding.paymentReceived
+        val labelIsReplayPaymentsLabel = binding.labelIsReplayPayments
         val labelIsHourlyPayment = binding.labelIsHourlyPayment
 
         //TODO TEMP
-        isReplayPayments.visibility = GONE
+        switchIsReplayPayments.visibility = GONE
         labelIsHourlyPayment.visibility = GONE
-        isReplayPaymentsLabel.visibility = GONE
-        hourlyPayment.visibility = GONE
+        labelIsReplayPaymentsLabel.visibility = GONE
+        switchHourlyPayment.visibility = GONE
 
 
         _viewModal.settings.observe(viewLifecycleOwner, {settings ->
             settings.hourlyPayment?.let{
-                hourlyPayment.isChecked = it
+                switchHourlyPayment.isChecked = it
             }
 
             settings.enabledComments?.let{
-                enabledComments.isChecked = it
+                switchEnabledComments.isChecked = it
             }
 
             settings.isReplayPayments?.let{
-                isReplayPayments.isChecked = it
+                switchIsReplayPayments.isChecked = it
             }
 
             settings.paymentReceived?.let{
-                paymentReceived.isChecked = true
+                switchPaymentReceived.isChecked = true
             }
         })
 
-        hourlyPayment.setOnCheckedChangeListener { _, isChecked ->
+        switchHourlyPayment.setOnCheckedChangeListener { _, isChecked ->
             val settings = _viewModal.settings.value!!
             settings.hourlyPayment = isChecked
             _viewModal.setSettings(settings)
         }
 
-        enabledComments.setOnCheckedChangeListener { _, isChecked ->
+        switchEnabledComments.setOnCheckedChangeListener { _, isChecked ->
             val settings = _viewModal.settings.value!!
             settings.enabledComments = isChecked
             _viewModal.setSettings(settings)
         }
 
-        isReplayPayments.setOnCheckedChangeListener { _, isChecked ->
+        switchIsReplayPayments.setOnCheckedChangeListener { _, isChecked ->
             val settings = _viewModal.settings.value!!
             settings.isReplayPayments = isChecked
             _viewModal.setSettings(settings)
         }
 
-        paymentReceived.setOnCheckedChangeListener { _, isChecked ->
+        switchPaymentReceived.setOnCheckedChangeListener { _, isChecked ->
             val settings = _viewModal.settings.value!!
             settings.paymentReceived = isChecked
             _viewModal.setSettings(settings)

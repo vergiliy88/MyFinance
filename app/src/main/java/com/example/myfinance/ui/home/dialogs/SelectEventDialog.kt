@@ -15,17 +15,20 @@ import com.example.myfinance.utils.SettingsState
 open class SelectEventDialog constructor(): BaseDialog<DialogSelectEventTypeBinding>() {
     private var listener: SelectTypeEvent? = null
     private var selectedDate: CalendarDate? = null
+    private var isHavePayments = false
 
     internal constructor(
         listener: SelectTypeEvent?,
-        date: CalendarDate?
+        date: CalendarDate?,
+        isHavePayments: Boolean
     ) : this() {
         this.listener = listener
         this.selectedDate = date
+        this.isHavePayments = isHavePayments
     }
 
-    internal constructor(dialog: SelectEventDialog, date: CalendarDate) :
-            this(dialog.listener, date)
+    internal constructor(dialog: SelectEventDialog, date: CalendarDate, isHavePayments: Boolean) :
+            this(dialog.listener, date, isHavePayments)
 
 
     companion object {
@@ -70,6 +73,12 @@ open class SelectEventDialog constructor(): BaseDialog<DialogSelectEventTypeBind
             buttonEditPayment.visibility = View.GONE
         }
 
+        if (!isHavePayments) {
+            buttonDelPayment.visibility = View.GONE
+            buttonEditPayment.visibility = View.GONE
+            buttonViewPayment.visibility = View.GONE
+        }
+
 
         buttonAddPayment.setOnClickListener {
             selectedDate?.let {
@@ -109,6 +118,7 @@ open class SelectEventDialog constructor(): BaseDialog<DialogSelectEventTypeBind
     open class Builder {
         private var listener: SelectTypeEvent? = null
         private var date: CalendarDate? = null
+        private var isHavePayments = false
 
         fun setListener(listener: SelectTypeEvent): Builder {
             this.listener = listener
@@ -120,8 +130,13 @@ open class SelectEventDialog constructor(): BaseDialog<DialogSelectEventTypeBind
             return this
         }
 
+        fun setIsHavePayments(isHave: Boolean): Builder {
+            this.isHavePayments = isHave
+            return this
+        }
+
         open fun build(): SelectEventDialog {
-            return SelectEventDialog(listener, date)
+            return SelectEventDialog(listener, date, isHavePayments)
         }
     }
 }

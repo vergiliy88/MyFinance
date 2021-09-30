@@ -12,7 +12,9 @@
         <entry key="..\:/Users/Vlad/AndroidStudioProjects/MyFinance/app/src/main/res/layout/fragment_settings.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Vlad/AndroidStudioProjects/MyFinance/app/src/main/res/layout/fragment_statistics.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/Vlad/AndroidStudioProjects/MyFinance/app/src/main/res/menu/bottom_nav_menu.xml" value="0.34375" />
+        <entry key="..\:/workspace/MyFinance/app/src/main/res/drawable/ic_launcher_background.xml" value="0.18802083333333333" />
         <entry key="..\:/workspace/MyFinance/app/src/main/res/drawable/ic_money.xml" value="0.35989583333333336" />
+        <entry key="..\:/workspace/MyFinance/app/src/main/res/drawable/ic_money_logo.xml" value="0.2708333333333333" />
         <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/activity_main.xml" value="0.2125" />
         <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/activity_splash.xml" value="0.34375" />
         <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/dialog_add_payment_type.xml" value="0.33" />
@@ -31,6 +33,8 @@
         <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/item_payment_template.xml" value="0.610236220472441" />
         <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/item_payment_type.xml" value="0.34375" />
         <entry key="..\:/workspace/MyFinance/app/src/main/res/layout/spinner_item.xml" value="0.33" />
+        <entry key="..\:/workspace/MyFinance/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.35989583333333336" />
+        <entry key="..\:/workspace/MyFinance/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.35989583333333336" />
       </map>
     </option>
   </component>
