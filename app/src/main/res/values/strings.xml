@@ -1,83 +1,83 @@
 <resources>
     <string name="app_name">My Finance</string>
-    <string name="title_home">Доход</string>
-    <string name="title_statistics">Статистика</string>
-    <string name="title_type_payment">Тип выплат</string>
-    <string name="title_settings">Настройки</string>
+    <string name="title_home">Income</string>
+    <string name="title_statistics">Statistics</string>
+    <string name="title_type_payment">Payment type</string>
+    <string name="title_settings">Settings</string>
 
-    <string name="label_salary">Зарплата</string>
-    <string name="label_prepaid">Аванс</string>
+    <string name="label_salary">The salary</string>
+    <string name="label_prepaid">Prepaid expense</string>
 
-    <string name="button_add_payment_type">Добавить тип выплат</string>
+    <string name="button_add_payment_type">Add payout type</string>
 
-    <string name="label_sum">Сумма</string>
-    <string name="label_day">День</string>
+    <string name="label_sum">Sum</string>
+    <string name="label_day">Day</string>
 
-    <string name="button_positive">Сохранить</string>
-    <string name="button_negative">Отмена</string>
+    <string name="button_positive">Save</string>
+    <string name="button_negative">Cancel</string>
 
-    <string name="dialog_title_payment_type">Создание типа вылат</string>
-    <string name="label_color">Цвет</string>
-    <string name="label_name">Название</string>
+    <string name="dialog_title_payment_type">Create a payout type</string>
+    <string name="label_color">Colour</string>
+    <string name="label_name">Name</string>
 
-    <string name="number">число</string>
-    <string name="currency">р.</string>
+    <string name="number">number</string>
+    <string name="currency">$</string>
 
-    <string name="title_del_payment_type">Удаление типа выплат</string>
-    <string name="label_del_payment_type_from_cal">удаленить данный тип выплат из календаря</string>
+    <string name="title_del_payment_type">Deleting a payout type</string>
+    <string name="label_del_payment_type_from_cal">remove this type of payments from the calendar</string>
 
-    <string name="button_del">Удалить</string>
+    <string name="button_del">Delete</string>
 
-    <string name="label_hourly_payment">Почасовая оплата</string>
-    <string name="label_enabled_comments">Вкл. комментарии к выплатам</string>
-    <string name="label_replay_payments">Повторять выплаты</string>
-    <string name="label_payments_received">Возможность уточнять выплаты</string>
+    <string name="label_hourly_payment">Hourly payment</string>
+    <string name="label_enabled_comments">Incl. comments on payments</string>
+    <string name="label_replay_payments">Repeat payments</string>
+    <string name="label_payments_received">Ability to clarify payments</string>
 
-    <string name="date_from">С:</string>
-    <string name="date_to">По:</string>
+    <string name="date_from">From:</string>
+    <string name="date_to">To:</string>
 
-    <string name="label_real_payment_sum">Выплачено денег</string>
-    <string name="label_payment_comment">Комментарий</string>
+    <string name="label_real_payment_sum">Paid out money</string>
+    <string name="label_payment_comment">Comment</string>
 
-    <string name="label_total_salary">Зарплата: </string>
-    <string name="label_total_payment">Доп. выплаты: </string>
-    <string name="label_total">Итого: </string>
-    <string name="button_add">Добавить</string>
+    <string name="label_total_salary">The salary: </string>
+    <string name="label_total_payment">Add. payments: </string>
+    <string name="label_total">Total: </string>
+    <string name="button_add">Add</string>
 
-    <string name="material_calendar_monday">Пн</string>
-    <string name="material_calendar_tuesday">Вт</string>
-    <string name="material_calendar_wednesday">Ср</string>
-    <string name="material_calendar_thursday">Чт</string>
-    <string name="material_calendar_friday">Пт</string>
-    <string name="material_calendar_saturday">Сб</string>
-    <string name="material_calendar_sunday">Вс</string>
+    <string name="material_calendar_monday">Mon</string>
+    <string name="material_calendar_tuesday">Tue</string>
+    <string name="material_calendar_wednesday">Wed</string>
+    <string name="material_calendar_thursday">Thu</string>
+    <string name="material_calendar_friday">Fri</string>
+    <string name="material_calendar_saturday">Sat</string>
+    <string name="material_calendar_sunday">Sun</string>
 
     <array name="material_calendar_months_array">
-        <item>Январь</item>
-        <item>Февраль</item>
-        <item>Март</item>
-        <item>Апрель</item>
-        <item>Май</item>
-        <item>Июнь</item>
-        <item>Июль</item>
-        <item>Август</item>
-        <item>Сентябрь</item>
-        <item>Октябрь</item>
-        <item>Ноябрь</item>
-        <item>Декабрь</item>
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
     </array>
 
-    <string name="material_calendar_today_button">Сегодня</string>
+    <string name="material_calendar_today_button">Today</string>
     <string name="material_calendar_positive_button">OK</string>
-    <string name="material_calendar_negative_button">Отмена</string>
-    <string name="button_save_payment">Сохранить</string>
+    <string name="material_calendar_negative_button">Cancel</string>
+    <string name="button_save_payment">Save</string>
 
-    <string name="button_add_payment">ДОбавление платежей</string>
-    <string name="button_view_payment">Просмотр платежей</string>
-    <string name="button_edit_payment">Редактрование платежей</string>
-    <string name="button_del_payment">Удаление платжей</string>
-    <string name="button_apply_filter">Применить фильтр</string>
+    <string name="button_add_payment">Adding payments</string>
+    <string name="button_view_payment">View payments</string>
+    <string name="button_edit_payment">Editing payments</string>
+    <string name="button_del_payment">Removing payments</string>
+    <string name="button_apply_filter">Apply</string>
 
-    <string name="label_date">Дата</string>
+    <string name="label_date">Date</string>
 </resources>
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myfinance">
+    package="com.vergiliy.myfinance">
 
     <application
-        android:name=".App"
+        android:name="com.vergiliy.myfinance.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFinance">
         <activity
-            android:name=".ui.SplashActivity"
+            android:name="com.vergiliy.myfinance.ui.SplashActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MyFinance.NoActionBar">
@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.vergiliy.myfinance.ui.MainActivity"
             android:exported="true"
             android:label="@string/app_name">
         </activity>

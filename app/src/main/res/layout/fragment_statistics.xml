@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/space_normal"
-            android:text="@android:string/yes"
+            android:text="@string/button_apply_filter"
             app:layout_constraintBottom_toBottomOf="@+id/button_date_to"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/button_date_from"

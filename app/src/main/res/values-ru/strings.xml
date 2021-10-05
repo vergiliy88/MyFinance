@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">Мои Финансы</string>
+    <string name="title_home">Доход</string>
+    <string name="title_statistics">Статистика</string>
+    <string name="title_type_payment">Тип выплат</string>
+    <string name="title_settings">Настройки</string>
+
+    <string name="label_salary">Зарплата</string>
+    <string name="label_prepaid">Аванс</string>
+
+    <string name="button_add_payment_type">Добавить тип выплат</string>
+
+    <string name="label_sum">Сумма</string>
+    <string name="label_day">День</string>
+
+    <string name="button_positive">Сохранить</string>
+    <string name="button_negative">Отмена</string>
+
+    <string name="dialog_title_payment_type">Создание типа выплат</string>
+    <string name="label_color">Цвет</string>
+    <string name="label_name">Название</string>
+
+    <string name="number">число</string>
+    <string name="currency">р.</string>
+
+    <string name="title_del_payment_type">Удаление типа выплат</string>
+    <string name="label_del_payment_type_from_cal">удаленить данный тип выплат из календаря</string>
+
+    <string name="button_del">Удалить</string>
+
+    <string name="label_hourly_payment">Почасовая оплата</string>
+    <string name="label_enabled_comments">Вкл. комментарии к выплатам</string>
+    <string name="label_replay_payments">Повторять выплаты</string>
+    <string name="label_payments_received">Возможность уточнять выплаты</string>
+
+    <string name="date_from">С:</string>
+    <string name="date_to">По:</string>
+
+    <string name="label_real_payment_sum">Выплачено денег</string>
+    <string name="label_payment_comment">Комментарий</string>
+
+    <string name="label_total_salary">Зарплата: </string>
+    <string name="label_total_payment">Доп. выплаты: </string>
+    <string name="label_total">Итого: </string>
+    <string name="button_add">Добавить</string>
+
+    <string name="material_calendar_monday">Пн</string>
+    <string name="material_calendar_tuesday">Вт</string>
+    <string name="material_calendar_wednesday">Ср</string>
+    <string name="material_calendar_thursday">Чт</string>
+    <string name="material_calendar_friday">Пт</string>
+    <string name="material_calendar_saturday">Сб</string>
+    <string name="material_calendar_sunday">Вс</string>
+
+    <array name="material_calendar_months_array">
+        <item>Январь</item>
+        <item>Февраль</item>
+        <item>Март</item>
+        <item>Апрель</item>
+        <item>Май</item>
+        <item>Июнь</item>
+        <item>Июль</item>
+        <item>Август</item>
+        <item>Сентябрь</item>
+        <item>Октябрь</item>
+        <item>Ноябрь</item>
+        <item>Декабрь</item>
+    </array>
+
+    <string name="material_calendar_today_button">Сегодня</string>
+    <string name="material_calendar_positive_button">OK</string>
+    <string name="material_calendar_negative_button">Отмена</string>
+    <string name="button_save_payment">Сохранить</string>
+
+    <string name="button_add_payment">ДОбавление платежей</string>
+    <string name="button_view_payment">Просмотр платежей</string>
+    <string name="button_edit_payment">Редактрование платежей</string>
+    <string name="button_del_payment">Удаление платжей</string>
+    <string name="button_apply_filter">Прим.</string>
+
+    <string name="label_date">Дата</string>
+</resources>
+
